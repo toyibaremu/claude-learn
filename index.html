@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code: From Zero to Mastery</title>
+  <meta name="description" content="A free, open, interactive course on Claude Code for researchers, economists, and social scientists — no prior coding experience required.">
+  <meta property="og:title" content="Claude Code: From Zero to Mastery">
+  <meta property="og:description" content="A free interactive course on Claude Code for researchers and social scientists.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/tooltip.css">
+  <style>
+    /* Landing page only */
+    .about-strip {
+      background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 2.5rem 2rem; text-align: center;
+    }
+    .about-strip .strip-inner { max-width: 780px; margin: 0 auto; }
+    .about-strip h2 { margin-top: 0; }
+    .who-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem;
+      max-width: 1000px; margin: 2rem auto 0; padding: 0 2rem;
+    }
+    .who-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.25rem; text-align: center;
+    }
+    .who-card .icon { font-size: 2.2rem; margin-bottom: .6rem; }
+    .who-card h4 { font-size: .95rem; margin-bottom: .35rem; }
+    .who-card p  { font-size: .82rem; color: var(--text-muted); margin: 0; }
+    .section-header { text-align: center; padding: 3rem 2rem 1rem; }
+    .section-header h2 { font-size: 1.85rem; margin-bottom: .5rem; }
+    .section-header p { color: var(--text-muted); font-size: 1rem; }
+    .contributors { max-width: 900px; margin: 0 auto; padding: 2rem 2rem 3rem; }
+    .resource-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+    .resource-pill {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .35rem .85rem; border-radius: 99px; font-size: .78rem;
+      background: var(--bg-alt); border: 1px solid var(--border); color: var(--text-muted);
+      text-decoration: none; transition: all .15s;
+    }
+    .resource-pill:hover { border-color: var(--cc-orange); color: var(--cc-orange); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- ─── Header ──────────────────────────────────────────────────── -->
+<header class="site-header">
+  <div class="logo">
+    <span>⬡</span> Claude Code <span>Course</span>
+  </div>
+  <nav class="header-nav">
+    <a href="index.html" class="active">Home</a>
+    <a href="modules/module-00.html">Modules</a>
+    <a href="modules/glossary.html">Glossary</a>
+    <a href="https://github.com/toyibaremu/claude-learn" target="_blank" rel="noopener">GitHub ↗</a>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
+  </nav>
+</header>
+
+<!-- ─── Hero ─────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-badge">FREE & OPEN SOURCE COURSE</div>
+  <h1>Claude Code:<br><span>From Zero to Mastery</span></h1>
+  <p>
+    A practical, jargon-free course for researchers, economists, and social scientists who want to use
+    AI to supercharge their work — from data cleaning to writing papers. No prior programming experience needed.
+  </p>
+  <div class="hero-cta">
+    <a href="modules/module-00.html" class="btn btn-primary">▶ Start Learning</a>
+    <a href="#modules" class="btn btn-secondary">See all modules</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">13</div><div class="label">Modules</div></div>
+    <div class="hero-stat"><div class="num">70+</div><div class="label">Exercises</div></div>
+    <div class="hero-stat"><div class="num">4</div><div class="label">Languages covered</div></div>
+    <div class="hero-stat"><div class="num">Free</div><div class="label">Always</div></div>
+  </div>
+</section>
+
+<!-- ─── Who this is for ──────────────────────────────────────────── -->
+<div class="about-strip">
+  <div class="strip-inner">
+    <h2>Who is this course for?</h2>
+    <p>
+      You don't need to be a programmer. If you use <strong>Stata, R, Python, or LaTeX</strong> — or even
+      just Excel and Word — this course will meet you where you are and take you further than you thought possible.
+    </p>
+  </div>
+</div>
+<div class="who-grid">
+  <div class="who-card">
+    <div class="icon">🌾</div>
+    <h4>Development Economists</h4>
+    <p>Clean messy survey data, run regressions, write up results — faster.</p>
+  </div>
+  <div class="who-card">
+    <div class="icon">📊</div>
+    <h4>Social Scientists</h4>
+    <p>Automate repetitive analysis tasks and write better code from scratch.</p>
+  </div>
+  <div class="who-card">
+    <div class="icon">🎓</div>
+    <h4>Graduate Students</h4>
+    <p>Tackle ambitious research projects without knowing every tool perfectly.</p>
+  </div>
+  <div class="who-card">
+    <div class="icon">🌍</div>
+    <h4>Researchers in LMICs</h4>
+    <p>Access world-class AI assistance regardless of institutional resources.</p>
+  </div>
+  <div class="who-card">
+    <div class="icon">📝</div>
+    <h4>Policy Analysts</h4>
+    <p>Turn data into reports, memos, and visualisations more efficiently.</p>
+  </div>
+  <div class="who-card">
+    <div class="icon">💻</div>
+    <h4>Research Assistants</h4>
+    <p>Become indispensable by mastering AI-assisted research workflows.</p>
+  </div>
+</div>
+
+<!-- ─── Modules grid ─────────────────────────────────────────────── -->
+<div class="section-header" id="modules">
+  <h2>Course Modules</h2>
+  <p>Work through them in order, or jump to what you need. Each module has exercises and real research examples.</p>
+</div>
+
+<div class="modules-grid">
+
+  <a href="modules/module-00.html" class="module-card" data-module="mod-00" style="--card-accent:#6366f1">
+    <div class="module-num">Module 0</div>
+    <div class="module-icon">🗺️</div>
+    <h3>What is Claude Code?</h3>
+    <p>Understand what Claude Code is, why it's different from chatting with Claude on the web, and why it matters for your research.</p>
+    <div class="module-meta">
+      <span>~20 min</span>
+      <span class="module-status"><span class="status-badge status-beginner">Beginner</span></span>
+    </div>
+  </a>
+
+  <a href="modules/module-01.html" class="module-card" data-module="mod-01" style="--card-accent:#0ea5e9">
+    <div class="module-num">Module 1</div>
+    <div class="module-icon">⚙️</div>
+    <h3>Installation &amp; Setup</h3>
+    <p>Install Claude Code on Mac, Windows (with WSL), or Linux. Set up your API key. Get Claude Code running in under 10 minutes.</p>
+    <div class="module-meta">
+      <span>~30 min</span>
+      <span class="module-status"><span class="status-badge status-beginner">Beginner</span></span>
+    </div>
+  </a>
+
+  <a href="modules/module-02.html" class="module-card" data-module="mod-02" style="--card-accent:#10b981">
+    <div class="module-num">Module 2</div>
+    <div class="module-icon">🚀</div>
+    <h3>Your First Session</h3>
+    <p>Start Claude Code, give it a task, navigate the interface, understand how to have a productive conversation with your AI assistant.</p>
+    <div class="module-meta">
+      <span>~25 min</span>
+      <span class="module-status"><span class="status-badge status-beginner">Beginner</span></span>
+    </div>
+  </a>
+
+  <a href="modules/module-03.html" class="module-card" data-module="mod-03" style="--card-accent:#f59e0b">
+    <div class="module-num">Module 3</div>
+    <div class="module-icon">📋</div>
+    <h3>CLAUDE.md — Teaching Claude Your Project</h3>
+    <p>Create a CLAUDE.md file that gives Claude permanent context about your project. The single biggest productivity lever in Claude Code.</p>
+    <div class="module-meta">
+      <span>~35 min</span>
+      <span class="module-status"><span class="status-badge status-beginner">Beginner</span></span>
+    </div>
+  </a>
+
+  <a href="modules/module-04.html" class="module-card" data-module="mod-04" style="--card-accent:#ef4444">
+    <div class="module-num">Module 4</div>
+    <div class="module-icon">🔬</div>
+    <h3>Research Workflows: Data &amp; Analysis</h3>
+    <p>Use Claude Code to clean messy datasets, write analysis scripts in Stata/R/Python, spot errors, and generate tables automatically.</p>
+    <div class="module-meta">
+      <span>~50 min</span>
+      <span class="module-status"><span class="status-badge status-intermediate">Intermediate</span></span>
+    </div>
+  </a>
+
+  <a href="modules/module-05.html" class="module-card" data-module="mod-05" style="--card-accent:#8b5cf6">
+    <div class="module-num">Module 5</div>
+    <div class="module-icon">✍️</div>
+    <h3>Writing, Papers &amp; LaTeX</h3>
+    <p>Draft paper sections, convert output tables to LaTeX, manage references, fix LaTeX errors, and improve academic writing.</p>
+    <div class="module-meta">
+      <span>~45 min</span>
+      <span class="module-status"><span class="status-badge status-intermediate">Intermediate</span></span>
+    </div>
+  </a>
+
+  <a href="modules/module-06.html" class="module-card" data-module="mod-06" style="--card-accent:#06b6d4">
+    <div class="module-num">Module 6</div>
+    <div class="module-icon">⚡</div>
+    <h3>Slash Commands &amp; Skills</h3>
+    <p>Use built-in shortcuts like /commit and /help. Create your own custom slash commands (skills) to automate your most common tasks.</p>
+    <div class="module-meta">
+      <span>~40 min</span>
+      <span class="module-status"><span class="status-badge status-intermediate">Intermediate</span></span>
+    </div>
+  </a>
+
+  <a href="modules/module-07.html" class="module-card" data-module="mod-07" style="--card-accent:#f97316">
+    <div class="module-num">Module 7</div>
+    <div class="module-icon">🤖</div>
+    <h3>Hooks — Automating Your Workflow</h3>
+    <p>Set up hooks that automatically run actions when Claude saves a file, stops working, or starts a session. True automation.</p>
+    <div class="module-meta">
+      <span>~45 min</span>
+      <span class="module-status"><span class="status-badge status-intermediate">Intermediate</span></span>
+    </div>
+  </a>
+
+  <a href="modules/module-08.html" class="module-card" data-module="mod-08" style="--card-accent:#84cc16">
+    <div class="module-num">Module 8</div>
+    <div class="module-icon">🔌</div>
+    <h3>MCP — Connecting Claude to the World</h3>
+    <p>Use the Model Context Protocol to connect Claude to databases, the web, GitHub, Zotero, and other tools in your research stack.</p>
+    <div class="module-meta">
+      <span>~50 min</span>
+      <span class="module-status"><span class="status-badge status-intermediate">Intermediate</span></span>
+    </div>
+  </a>
+
+  <a href="modules/module-09.html" class="module-card" data-module="mod-09" style="--card-accent:#ec4899">
+    <div class="module-num">Module 9</div>
+    <div class="module-icon">🏗️</div>
+    <h3>Multi-file Projects &amp; Codebases</h3>
+    <p>Navigate large research projects with many files. Use Claude Code to understand, refactor, and extend existing codebases you inherited.</p>
+    <div class="module-meta">
+      <span>~45 min</span>
+      <span class="module-status"><span class="status-badge status-advanced">Advanced</span></span>
+    </div>
+  </a>
+
+  <a href="modules/module-10.html" class="module-card" data-module="mod-10" style="--card-accent:#14b8a6">
+    <div class="module-num">Module 10</div>
+    <div class="module-icon">🛠️</div>
+    <h3>Building Tools &amp; Apps with Claude</h3>
+    <p>Build custom research tools: data dashboards, survey apps, literature scrapers, and automation scripts — even if you've never built an app before.</p>
+    <div class="module-meta">
+      <span>~60 min</span>
+      <span class="module-status"><span class="status-badge status-advanced">Advanced</span></span>
+    </div>
+  </a>
+
+  <a href="modules/module-11.html" class="module-card" data-module="mod-11" style="--card-accent:#a855f7">
+    <div class="module-num">Module 11</div>
+    <div class="module-icon">👥</div>
+    <h3>Team Research &amp; Collaboration</h3>
+    <p>Share Claude Code setups with your lab, standardize workflows across a team, and use Git + Claude Code for reproducible research.</p>
+    <div class="module-meta">
+      <span>~40 min</span>
+      <span class="module-status"><span class="status-badge status-advanced">Advanced</span></span>
+    </div>
+  </a>
+
+  <a href="modules/module-12.html" class="module-card" data-module="mod-12" style="--card-accent:#f43f5e">
+    <div class="module-num">Module 12</div>
+    <div class="module-icon">🧠</div>
+    <h3>Advanced: Agents &amp; API Integration</h3>
+    <p>Build multi-step AI pipelines, call the Claude API directly, and create autonomous agents for complex research tasks.</p>
+    <div class="module-meta">
+      <span>~60 min</span>
+      <span class="module-status"><span class="status-badge status-advanced">Advanced</span></span>
+    </div>
+  </a>
+
+  <a href="modules/module-13.html" class="module-card" data-module="mod-13" style="--card-accent:#64748b">
+    <div class="module-num">Module 13</div>
+    <div class="module-icon">🏆</div>
+    <h3>Mastery, Ethics &amp; Best Practices</h3>
+    <p>Responsible AI use in research, academic integrity, security, cost management, and how to keep learning as Claude Code evolves.</p>
+    <div class="module-meta">
+      <span>~35 min</span>
+      <span class="module-status"><span class="status-badge status-advanced">Advanced</span></span>
+    </div>
+  </a>
+
+  <a href="modules/glossary.html" class="module-card" data-module="glossary" style="--card-accent:#d97706">
+    <div class="module-num">Reference</div>
+    <div class="module-icon">📖</div>
+    <h3>Jargon Library &amp; Glossary</h3>
+    <p>Plain-English definitions for every technical term used in this course. Hover over dotted words in any module to see instant definitions.</p>
+    <div class="module-meta">
+      <span>Reference</span>
+    </div>
+  </a>
+
+</div>
+
+<!-- ─── Resources ─────────────────────────────────────────────────── -->
+<div class="section-header">
+  <h2>Built on Real-World Workflows</h2>
+  <p>This course draws from leading economists, developers, and researchers who use Claude Code daily.</p>
+</div>
+<div class="contributors">
+  <div class="resource-list">
+    <a href="https://claudeblattman.com/" class="resource-pill" target="_blank" rel="noopener">🧑‍🏫 Chris Blattman</a>
+    <a href="https://psantanna.com/claude-code-my-workflow/" class="resource-pill" target="_blank" rel="noopener">📈 Pedro Sant'Anna</a>
+    <a href="https://genaiforecon.substack.com/" class="resource-pill" target="_blank" rel="noopener">📰 GenAI for Econ</a>
+    <a href="https://meleantonio.github.io/awesome-econ-ai-stuff/" class="resource-pill" target="_blank" rel="noopener">⭐ Awesome Econ AI</a>
+    <a href="https://boristane.com/blog/how-i-use-claude-code/" class="resource-pill" target="_blank" rel="noopener">💡 Boris Tane</a>
+    <a href="https://simonwillison.net/" class="resource-pill" target="_blank" rel="noopener">🔬 Simon Willison</a>
+    <a href="https://github.com/scunning1975/MixtapeTools" class="resource-pill" target="_blank" rel="noopener">🎵 Mixtape Tools</a>
+    <a href="https://github.com/Alalalalaki/Guide2EconRA" class="resource-pill" target="_blank" rel="noopener">📚 Guide to EconRA</a>
+    <a href="https://www.aei.org/technology-and-innovation/ai-tools-for-economists-and-policy-analysts/" class="resource-pill" target="_blank" rel="noopener">🏛️ AEI AI Tools</a>
+    <a href="https://docs.anthropic.com/en/docs/claude-code/overview" class="resource-pill" target="_blank" rel="noopener">📄 Official Docs</a>
+  </div>
+</div>
+
+<!-- ─── Footer ─────────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <p>
+    <strong>Claude Code: From Zero to Mastery</strong> —
+    Open source, free forever.
+    <a href="https://github.com/toyibaremu/claude-learn" target="_blank" rel="noopener">Contribute on GitHub ↗</a>
+  </p>
+  <p style="margin-top:.5rem">
+    Built with Claude Code · Hover over <span style="border-bottom:1px dashed var(--cc-orange)">dotted terms</span> anywhere for plain-English definitions
+  </p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

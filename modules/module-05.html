@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 5: Writing, Papers & LaTeX | Claude Code Course</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/tooltip.css">
+</head>
+<body data-module="mod-05">
+<header class="site-header">
+  <button class="btn-menu" onclick="toggleSidebar()" aria-label="Open menu">☰</button>
+  <div class="logo"><a href="../index.html" style="color:inherit;text-decoration:none"><span>⬡</span> Claude Code <span>Course</span></a></div>
+  <nav class="header-nav"><a href="../index.html">Home</a><a href="glossary.html">Glossary</a><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></nav>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-progress"><div class="progress-bar"><div class="progress-fill"></div></div><div class="progress-text"></div></div>
+    <div class="sidebar-section"><div class="sidebar-label">Beginner</div>
+      <a href="module-00.html" class="sidebar-link" data-module="mod-00">🗺️ What is Claude Code?</a>
+      <a href="module-01.html" class="sidebar-link" data-module="mod-01">⚙️ Installation &amp; Setup</a>
+      <a href="module-02.html" class="sidebar-link" data-module="mod-02">🚀 Your First Session</a>
+      <a href="module-03.html" class="sidebar-link" data-module="mod-03">📋 CLAUDE.md</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Intermediate</div>
+      <a href="module-04.html" class="sidebar-link" data-module="mod-04">🔬 Research Workflows</a>
+      <a href="module-05.html" class="sidebar-link active" data-module="mod-05">✍️ Writing &amp; LaTeX</a>
+      <a href="module-06.html" class="sidebar-link" data-module="mod-06">⚡ Slash Commands &amp; Skills</a>
+      <a href="module-07.html" class="sidebar-link" data-module="mod-07">🤖 Hooks</a>
+      <a href="module-08.html" class="sidebar-link" data-module="mod-08">🔌 MCP</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Advanced</div>
+      <a href="module-09.html" class="sidebar-link" data-module="mod-09">🏗️ Multi-file Projects</a>
+      <a href="module-10.html" class="sidebar-link" data-module="mod-10">🛠️ Building Tools</a>
+      <a href="module-11.html" class="sidebar-link" data-module="mod-11">👥 Team Research</a>
+      <a href="module-12.html" class="sidebar-link" data-module="mod-12">🧠 Agents &amp; API</a>
+      <a href="module-13.html" class="sidebar-link" data-module="mod-13">🏆 Mastery &amp; Ethics</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Reference</div><a href="glossary.html" class="sidebar-link">📖 Jargon Library</a></div>
+  </aside>
+  <main class="main-content">
+    <div class="chip">Module 5 · Intermediate · ~45 min</div>
+    <h1 class="page-title" style="margin-top:.75rem">✍️ Writing, Papers &amp; LaTeX</h1>
+    <p class="page-subtitle">Use Claude Code to draft paper sections, fix LaTeX, manage references, respond to reviewers, and write better academic prose.</p>
+
+    <div class="toc">
+      <h4>In this module</h4>
+      <ol>
+        <li><a href="#writing-with-context">Writing with full project context</a></li>
+        <li><a href="#latex-workflows">LaTeX workflows</a></li>
+        <li><a href="#tables-to-latex">Converting outputs to LaTeX</a></li>
+        <li><a href="#referee-responses">Responding to referees</a></li>
+        <li><a href="#literature">Literature summaries</a></li>
+        <li><a href="#academic-integrity">A note on academic integrity</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+      </ol>
+    </div>
+
+    <h2 id="writing-with-context" class="anchor-heading">Writing with full project context</h2>
+
+    <p>Because Claude Code has access to all your files, it can write with genuine knowledge of your research — not just generic academic prose. This is the key difference from using Claude.ai on the web.</p>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <strong>Put your draft in the project folder</strong>
+        Save your paper as a .tex or .md file in your project folder. Then Claude can read your existing
+        draft, your results tables, and your data summary all at once when writing new sections.
+      </div>
+    </div>
+
+    <h3>Drafting paper sections</h3>
+    <pre><code><span class="str">></span> Read my summary statistics table (output/tables/balance_table.tex)
+  and my regression results (output/tables/main_results.tex).
+  Draft a "Data and Empirical Strategy" section for my paper.
+  The audience is economists at top journals.
+  Use the variable names from CLAUDE.md to describe the data.
+  Do not make up numbers — only use what's in the tables.
+  Length: ~800 words. Style: similar to applied micro papers (AER, QJE).</code></pre>
+
+    <h3>Improving existing writing</h3>
+    <pre><code><span class="str">></span> Read the introduction in paper/draft.tex (lines 1-120).
+  Rewrite it to be:
+  - More direct (cut the first 3 sentences — they're too vague)
+  - Clearer about the contribution vs. existing literature
+  - Ending with a clear roadmap paragraph
+  Keep my voice and don't add any claims I didn't make.</code></pre>
+
+    <h2 id="latex-workflows" class="anchor-heading">LaTeX workflows</h2>
+
+    <div class="callout callout-info">
+      <div class="callout-icon">📖</div>
+      <div class="callout-body">
+        <strong>What is LaTeX?</strong>
+        LaTeX (pronounced "lah-tech") is a document preparation system used in academia, especially
+        in economics and mathematics. Instead of clicking formatting buttons like in Word, you write
+        plain text with commands like \textbf{bold} or \begin{table}. It produces beautiful PDFs
+        and handles equations, references, and numbering automatically.
+      </div>
+    </div>
+
+    <h3>Fixing LaTeX errors</h3>
+    <pre><code><span class="str">></span> My LaTeX file (paper/draft.tex) won't compile. Here's the error:
+  "! Undefined control sequence. \hdashline"
+  Find the error and fix it. Then compile the file and tell me
+  if there are any other errors.</code></pre>
+
+    <h3>Converting Word tables to LaTeX</h3>
+    <pre><code><span class="str">></span> Convert this table from my Word document to LaTeX tabular format.
+  Use the booktabs package (toprule, midrule, bottomrule).
+  Add a caption "Summary Statistics" and label "tab:summary".
+
+  [paste your table here]</code></pre>
+
+    <h3>Managing references</h3>
+    <pre><code><span class="str">></span> I have a .bib file (references.bib). I used @Duflo2008 in my text
+  but it's not in my bib file. Add the correct citation for:
+  Duflo, Esther and Pande, Rohini (2007). "Dams." Quarterly Journal
+  of Economics 122(2): 601-646.
+
+  Then check if any \cite{} commands in draft.tex are missing from
+  references.bib and list them.</code></pre>
+
+    <h2 id="tables-to-latex" class="anchor-heading">Converting outputs to LaTeX</h2>
+
+    <div class="tabs">
+      <div class="tab-list">
+        <button class="tab-btn active" data-tab="ltx-stata"><span class="tab-lang"><span class="lang-dot lang-stata"></span> Stata → LaTeX</span></button>
+        <button class="tab-btn" data-tab="ltx-r"><span class="tab-lang"><span class="lang-dot lang-r"></span> R → LaTeX</span></button>
+      </div>
+      <div class="tab-panel active" id="ltx-stata">
+        <pre><code><span class="str">></span> Take the estout table in output/tables/main_results.tex and:
+  1. Add a table note explaining the standard errors
+  2. Add \label{tab:main} and a caption
+  3. Wrap it in a \begin{table}[htbp] environment
+  4. Make sure it compiles without errors in my paper</code></pre>
+      </div>
+      <div class="tab-panel" id="ltx-r">
+        <pre><code><span class="str">></span> Take my modelsummary output and reformat it:
+  1. Add stars in the LaTeX note: "* p &lt; 0.1, ** p &lt; 0.05, *** p &lt; 0.01"
+  2. Make the table fit in a single column (\small font)
+  3. Add a label and caption matching my paper's table numbering</code></pre>
+      </div>
+    </div>
+
+    <h2 id="referee-responses" class="anchor-heading">Responding to referees</h2>
+
+    <p>Referee responses are time-consuming. Claude Code can help draft structured, professional responses while you focus on the substance.</p>
+
+    <pre><code><span class="str">></span> I received three referee comments (referee_comments.txt).
+  Read them, then read my paper (paper/draft.tex) and my results.
+  Draft a referee response letter that:
+  - Acknowledges each comment respectfully
+  - Explains what changes I made (refer to specific sections)
+  - Provides brief justification for comments I did NOT address
+  Be polite but direct. Length: ~2 pages.
+  DO NOT make up any new analysis — only refer to what's in my files.</code></pre>
+
+    <h2 id="literature" class="anchor-heading">Literature summaries</h2>
+
+    <pre><code><span class="str">></span> I have 8 paper PDFs in papers/to-read/ that are related to my research.
+  For each one, write a 3-sentence summary covering:
+  (1) the research question, (2) the key finding, (3) how it relates to my paper.
+  Save the summaries to notes/literature_notes.md</code></pre>
+
+    <h2 id="academic-integrity" class="anchor-heading">A note on academic integrity</h2>
+
+    <div class="callout callout-danger">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body">
+        <strong>Using AI writing ethically in research</strong>
+        <ul style="margin:.5rem 0 0;padding-left:1.2rem">
+          <li>Always disclose AI assistance per your journal's or institution's policy</li>
+          <li>Never submit AI-generated text as purely your own without disclosure</li>
+          <li>Claude should help you write — not write <em>for</em> you</li>
+          <li>Review every sentence Claude produces — you are responsible for accuracy</li>
+          <li>Never let Claude generate citations — always verify them independently</li>
+          <li>See Module 13 (Mastery &amp; Ethics) for a full discussion of responsible AI use in research</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exercise" id="exercise">
+      <div class="exercise-header"><span class="ex-icon">🎯</span><h4>Module 5 Exercise: From results to prose</h4></div>
+      <p class="exercise-task">Take any regression you've run recently (from Module 4 or your own work) and:</p>
+      <ol>
+        <li>Make sure the output is in a LaTeX table in your project folder</li>
+        <li>Ask Claude to write a 300-word "Results" paragraph describing the main findings</li>
+        <li>Ask Claude to find and fix any LaTeX formatting issues in the table</li>
+        <li>Ask Claude: "What are the three most important limitations of this analysis that I should discuss in the paper?"</li>
+      </ol>
+      <div class="exercise-tools"><span class="tool-tag">LaTeX</span><span class="tool-tag">Any stats tool</span><span class="tool-tag">~30 min</span></div>
+    </div>
+
+    <div class="module-nav">
+      <a href="module-04.html">← <span><span class="nav-label">Previous</span> 🔬 Research Workflows</span></a>
+      <button class="complete-btn" id="complete-btn" onclick="markComplete('mod-05')">✓ Mark as complete</button>
+      <a href="module-06.html"><span class="nav-label">Next module</span> ⚡ Slash Commands →</a>
+    </div>
+  </main>
+</div>
+<footer class="site-footer"><p>Claude Code: From Zero to Mastery · <a href="../index.html">Home</a> · <a href="glossary.html">Glossary</a></p></footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

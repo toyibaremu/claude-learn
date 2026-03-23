@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 9: Multi-file Projects | Claude Code Course</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/tooltip.css">
+</head>
+<body data-module="mod-09">
+<header class="site-header">
+  <button class="btn-menu" onclick="toggleSidebar()">☰</button>
+  <div class="logo"><a href="../index.html" style="color:inherit;text-decoration:none"><span>⬡</span> Claude Code <span>Course</span></a></div>
+  <nav class="header-nav"><a href="../index.html">Home</a><a href="glossary.html">Glossary</a><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></nav>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-progress"><div class="progress-bar"><div class="progress-fill"></div></div><div class="progress-text"></div></div>
+    <div class="sidebar-section"><div class="sidebar-label">Beginner</div>
+      <a href="module-00.html" class="sidebar-link" data-module="mod-00">🗺️ What is Claude Code?</a>
+      <a href="module-01.html" class="sidebar-link" data-module="mod-01">⚙️ Installation &amp; Setup</a>
+      <a href="module-02.html" class="sidebar-link" data-module="mod-02">🚀 Your First Session</a>
+      <a href="module-03.html" class="sidebar-link" data-module="mod-03">📋 CLAUDE.md</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Intermediate</div>
+      <a href="module-04.html" class="sidebar-link" data-module="mod-04">🔬 Research Workflows</a>
+      <a href="module-05.html" class="sidebar-link" data-module="mod-05">✍️ Writing &amp; LaTeX</a>
+      <a href="module-06.html" class="sidebar-link" data-module="mod-06">⚡ Slash Commands &amp; Skills</a>
+      <a href="module-07.html" class="sidebar-link" data-module="mod-07">🤖 Hooks</a>
+      <a href="module-08.html" class="sidebar-link" data-module="mod-08">🔌 MCP</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Advanced</div>
+      <a href="module-09.html" class="sidebar-link active" data-module="mod-09">🏗️ Multi-file Projects</a>
+      <a href="module-10.html" class="sidebar-link" data-module="mod-10">🛠️ Building Tools</a>
+      <a href="module-11.html" class="sidebar-link" data-module="mod-11">👥 Team Research</a>
+      <a href="module-12.html" class="sidebar-link" data-module="mod-12">🧠 Agents &amp; API</a>
+      <a href="module-13.html" class="sidebar-link" data-module="mod-13">🏆 Mastery &amp; Ethics</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Reference</div><a href="glossary.html" class="sidebar-link">📖 Jargon Library</a></div>
+  </aside>
+  <main class="main-content">
+    <div class="chip">Module 9 · Advanced · ~45 min</div>
+    <h1 class="page-title" style="margin-top:.75rem">🏗️ Multi-file Projects &amp; Codebases</h1>
+    <p class="page-subtitle">Navigate large research projects with many files, understand inherited codebases, and organise complex projects from scratch with Claude's help.</p>
+
+    <div class="toc">
+      <h4>In this module</h4>
+      <ol>
+        <li><a href="#project-structure">Ideal research project structure</a></li>
+        <li><a href="#understanding-inherited">Understanding an inherited codebase</a></li>
+        <li><a href="#refactoring">Refactoring and reorganising</a></li>
+        <li><a href="#makefile">Building a reproducible pipeline</a></li>
+        <li><a href="#large-projects">Working with very large projects</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+      </ol>
+    </div>
+
+    <h2 id="project-structure" class="anchor-heading">Ideal research project structure</h2>
+    <p>Before adding code, ask Claude to help you set up a project structure that scales. Here's a template for quantitative research:</p>
+
+    <div class="tabs">
+      <div class="tab-list">
+        <button class="tab-btn active" data-tab="struct-stata">Stata project</button>
+        <button class="tab-btn" data-tab="struct-r">R project</button>
+        <button class="tab-btn" data-tab="struct-py">Python project</button>
+      </div>
+      <div class="tab-panel active" id="struct-stata">
+        <pre><code>project/
+├── CLAUDE.md               <span class="cmt"># Claude's briefing document</span>
+├── README.md               <span class="cmt"># Human-readable project overview</span>
+├── main.do                 <span class="cmt"># Master do file — runs everything in order</span>
+├── data/
+│   ├── raw/                <span class="cmt"># NEVER modify — original data</span>
+│   └── clean/              <span class="cmt"># Processed datasets</span>
+├── analysis/
+│   ├── 01_clean.do
+│   ├── 02_merge.do
+│   ├── 03_analysis.do
+│   └── 04_tables.do
+├── output/
+│   ├── tables/
+│   └── figures/
+├── paper/
+│   ├── main.tex
+│   └── references.bib
+└── logs/                   <span class="cmt"># Log files from runs</span></code></pre>
+      </div>
+      <div class="tab-panel" id="struct-r">
+        <pre><code>project/
+├── CLAUDE.md
+├── README.md
+├── renv.lock               <span class="cmt"># Package versions (reproducibility)</span>
+├── R/
+│   ├── 01_clean.R
+│   ├── 02_merge.R
+│   ├── 03_analysis.R
+│   └── 04_figures.R
+├── data/
+│   ├── raw/
+│   └── clean/
+├── output/
+│   ├── tables/
+│   └── figures/
+├── paper/
+│   ├── main.Rmd            <span class="cmt"># or main.tex</span>
+│   └── references.bib
+└── _targets.R              <span class="cmt"># Optional: targets pipeline</span></code></pre>
+      </div>
+      <div class="tab-panel" id="struct-py">
+        <pre><code>project/
+├── CLAUDE.md
+├── README.md
+├── pyproject.toml          <span class="cmt"># Dependencies</span>
+├── Makefile                <span class="cmt"># Run pipeline with make all</span>
+├── src/
+│   ├── clean.py
+│   ├── merge.py
+│   ├── analysis.py
+│   └── figures.py
+├── data/
+│   ├── raw/
+│   └── clean/
+├── output/
+│   ├── tables/
+│   └── figures/
+└── notebooks/              <span class="cmt"># Exploration only</span></code></pre>
+      </div>
+    </div>
+
+    <h3>Ask Claude to set this up</h3>
+    <pre><code><span class="str">></span> I'm starting a new project on [topic].
+  Create the full project folder structure for a quantitative
+  research project using Stata. Include:
+  - All directories with README.txt explaining what goes in each
+  - A template CLAUDE.md filled in with what you know so far
+  - A main.do that runs the whole pipeline in order
+  - A .gitignore file that excludes large data files</code></pre>
+
+    <h2 id="understanding-inherited" class="anchor-heading">Understanding an inherited codebase</h2>
+    <p>Suppose you inherited a PhD student's messy analysis code. Claude can help you understand it quickly:</p>
+
+    <pre><code><span class="str">></span> I just inherited this research project from a PhD student who
+  left the lab. I need to understand it before I can continue.
+  Please:
+  1. List all files and describe what each one does in 1 sentence
+  2. Identify the main analysis pipeline (what order should files run?)
+  3. Find any hardcoded paths that would break on a different computer
+  4. Flag any code that looks buggy or unclear
+  5. Identify any dependencies I need to install
+  Save your findings to notes/project_audit.md</code></pre>
+
+    <h2 id="refactoring" class="anchor-heading">Refactoring and reorganising</h2>
+    <pre><code><span class="str">></span> The file analysis.do is 1,200 lines long and does too many things.
+  Break it into 4 separate files:
+  - 01_data_prep.do (lines that load and merge data)
+  - 02_main_analysis.do (main regression tables)
+  - 03_robustness.do (robustness checks)
+  - 04_figures.do (all figure creation)
+  Then update main.do to call them in order.
+  Don't change any code logic — only reorganise it.</code></pre>
+
+    <h2 id="makefile" class="anchor-heading">Building a reproducible pipeline</h2>
+    <p>A Makefile (or equivalent) lets anyone reproduce your entire analysis with a single command. Claude can build this for you:</p>
+
+    <pre><code><span class="str">></span> Create a Makefile for this project that:
+  - Has a "make all" target that runs the entire analysis pipeline
+  - Tracks dependencies (analysis depends on clean data, etc.)
+  - Has a "make clean" target that deletes all generated outputs
+  - Logs each step to a timestamped log file
+  - Prints a success message at the end
+
+  The pipeline order is:
+  1. Run 01_clean.do (creates data/clean/hh_clean.dta)
+  2. Run 02_merge.do (creates data/clean/panel.dta)
+  3. Run 03_analysis.do (creates output/tables/)
+  4. Run 04_figures.do (creates output/figures/)
+  5. Compile paper/main.tex to PDF</code></pre>
+
+    <h2 id="large-projects" class="anchor-heading">Working with very large projects</h2>
+    <p>When projects have hundreds of files, Claude can't read everything at once. Use these strategies:</p>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <strong>Managing large codebases</strong>
+        <ul style="margin:.5rem 0 0;padding-left:1.2rem">
+          <li>Use CLAUDE.md to point Claude to the most important files</li>
+          <li>Ask Claude to search for specific patterns rather than reading everything</li>
+          <li>Use <code>/clear</code> between different tasks to free up context</li>
+          <li>Break large refactoring tasks into smaller focused sessions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exercise" id="exercise">
+      <div class="exercise-header"><span class="ex-icon">🎯</span><h4>Module 9 Exercise: Audit a project</h4></div>
+      <p class="exercise-task">Pick your messiest research project (we all have one) and ask Claude to audit it:</p>
+      <ol>
+        <li>Ask Claude to list all files and describe what each does</li>
+        <li>Ask: "What's wrong with this project structure? What would you improve?"</li>
+        <li>Ask Claude to create a README.md that accurately describes the project based on what it sees</li>
+        <li>As a bonus: ask Claude to create a Makefile or master script that runs the whole pipeline</li>
+      </ol>
+      <div class="exercise-tools"><span class="tool-tag">Any tool</span><span class="tool-tag">~35 min</span></div>
+    </div>
+
+    <div class="module-nav">
+      <a href="module-08.html">← <span><span class="nav-label">Previous</span> 🔌 MCP</span></a>
+      <button class="complete-btn" id="complete-btn" onclick="markComplete('mod-09')">✓ Mark as complete</button>
+      <a href="module-10.html"><span class="nav-label">Next module</span> 🛠️ Building Tools →</a>
+    </div>
+  </main>
+</div>
+<footer class="site-footer"><p>Claude Code: From Zero to Mastery · <a href="../index.html">Home</a> · <a href="glossary.html">Glossary</a></p></footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

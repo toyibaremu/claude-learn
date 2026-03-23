@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 11: Team Research & Collaboration | Claude Code Course</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/tooltip.css">
+</head>
+<body data-module="mod-11">
+<header class="site-header">
+  <button class="btn-menu" onclick="toggleSidebar()">☰</button>
+  <div class="logo"><a href="../index.html" style="color:inherit;text-decoration:none"><span>⬡</span> Claude Code <span>Course</span></a></div>
+  <nav class="header-nav"><a href="../index.html">Home</a><a href="glossary.html">Glossary</a><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></nav>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-progress"><div class="progress-bar"><div class="progress-fill"></div></div><div class="progress-text"></div></div>
+    <div class="sidebar-section"><div class="sidebar-label">Beginner</div>
+      <a href="module-00.html" class="sidebar-link" data-module="mod-00">🗺️ What is Claude Code?</a>
+      <a href="module-01.html" class="sidebar-link" data-module="mod-01">⚙️ Installation &amp; Setup</a>
+      <a href="module-02.html" class="sidebar-link" data-module="mod-02">🚀 Your First Session</a>
+      <a href="module-03.html" class="sidebar-link" data-module="mod-03">📋 CLAUDE.md</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Intermediate</div>
+      <a href="module-04.html" class="sidebar-link" data-module="mod-04">🔬 Research Workflows</a>
+      <a href="module-05.html" class="sidebar-link" data-module="mod-05">✍️ Writing &amp; LaTeX</a>
+      <a href="module-06.html" class="sidebar-link" data-module="mod-06">⚡ Slash Commands &amp; Skills</a>
+      <a href="module-07.html" class="sidebar-link" data-module="mod-07">🤖 Hooks</a>
+      <a href="module-08.html" class="sidebar-link" data-module="mod-08">🔌 MCP</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Advanced</div>
+      <a href="module-09.html" class="sidebar-link" data-module="mod-09">🏗️ Multi-file Projects</a>
+      <a href="module-10.html" class="sidebar-link" data-module="mod-10">🛠️ Building Tools</a>
+      <a href="module-11.html" class="sidebar-link active" data-module="mod-11">👥 Team Research</a>
+      <a href="module-12.html" class="sidebar-link" data-module="mod-12">🧠 Agents &amp; API</a>
+      <a href="module-13.html" class="sidebar-link" data-module="mod-13">🏆 Mastery &amp; Ethics</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Reference</div><a href="glossary.html" class="sidebar-link">📖 Jargon Library</a></div>
+  </aside>
+  <main class="main-content">
+    <div class="chip">Module 11 · Advanced · ~40 min</div>
+    <h1 class="page-title" style="margin-top:.75rem">👥 Team Research &amp; Collaboration</h1>
+    <p class="page-subtitle">Share Claude Code setups across your lab, use Git for reproducible research, and standardise workflows so your whole team benefits from AI assistance.</p>
+
+    <div class="toc">
+      <h4>In this module</h4>
+      <ol>
+        <li><a href="#git-basics">Git + Claude Code: the basics</a></li>
+        <li><a href="#shared-setup">Sharing your Claude Code setup</a></li>
+        <li><a href="#reproducibility">Reproducibility standards</a></li>
+        <li><a href="#ra-workflow">Working with RAs and co-authors</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+      </ol>
+    </div>
+
+    <h2 id="git-basics" class="anchor-heading">Git + Claude Code: the basics</h2>
+
+    <div class="callout callout-info">
+      <div class="callout-icon">📖</div>
+      <div class="callout-body">
+        <strong>What is Git and why do you need it with Claude Code?</strong>
+        Git tracks every change to your files, like "track changes" in Word but for code.
+        When Claude edits your files, Git means you can always undo any change.
+        It's your safety net. Without it, Claude could accidentally overwrite work.
+      </div>
+    </div>
+
+    <p>Here's a minimal Git workflow for research projects:</p>
+
+    <pre><code><span class="cmt"># 1. Initialise Git in your project (do this once)</span>
+git init
+git add .
+git commit -m "Initial project setup"
+
+<span class="cmt"># 2. Before a Claude Code session</span>
+git status                    <span class="cmt"># See what's changed</span>
+
+<span class="cmt"># 3. After Claude makes changes you want to keep</span>
+git add -A
+git commit -m "Claude: cleaned survey dataset"
+
+<span class="cmt"># 4. If Claude made a mistake and you want to undo</span>
+git checkout -- analysis.do   <span class="cmt"># Undo changes to one file</span>
+git reset --hard HEAD         <span class="cmt"># Undo ALL changes since last commit</span></code></pre>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">🤖</div>
+      <div class="callout-body">
+        <strong>Let Claude handle Git too</strong>
+        You can ask Claude to commit its own changes:
+        <em>"After completing each task, commit the changes with a descriptive message."</em>
+        Claude will use Git automatically.
+      </div>
+    </div>
+
+    <h2 id="shared-setup" class="anchor-heading">Sharing your Claude Code setup</h2>
+
+    <p>Because everything is just files, sharing your Claude Code setup is automatic when you share your project via Git. Here's what gets shared:</p>
+
+    <table class="cmd-table">
+      <thead><tr><th>File/Folder</th><th>What it contains</th><th>Share via Git?</th></tr></thead>
+      <tbody>
+        <tr><td><code>CLAUDE.md</code></td><td>Project context for Claude</td><td>✅ Yes — share this</td></tr>
+        <tr><td><code>.claude/commands/</code></td><td>Custom skills/slash commands</td><td>✅ Yes — share this</td></tr>
+        <tr><td><code>.claude/settings.json</code></td><td>Project-level hooks and permissions</td><td>⚠️ Yes, but remove secrets first</td></tr>
+        <tr><td><code>~/.claude/settings.json</code></td><td>Personal global settings</td><td>❌ No — this is personal</td></tr>
+        <tr><td><code>~/.claude/CLAUDE.md</code></td><td>Personal preferences</td><td>❌ No — this is personal</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Team CLAUDE.md best practice</h3>
+    <pre><code><span class="cmt"># Add to your shared CLAUDE.md for team projects:</span>
+
+## Team Conventions
+- All team members use Stata 17 or later
+- Code review required before merging to main branch
+- All analysis scripts must be runnable from scratch (no local paths)
+- Use English for all code comments and variable names
+- Ask before modifying files in data/raw/
+
+## Contact
+- PI: [name] — ask before major structural changes
+- RA: [name] — handles data cleaning do files
+- For questions about the analysis: see analysis/README.md</code></pre>
+
+    <h2 id="reproducibility" class="anchor-heading">Reproducibility standards</h2>
+
+    <pre><code><span class="str">></span> I want to make this project fully reproducible so anyone can
+  replicate our results from scratch. Please:
+  1. Check all file paths — flag any that are hardcoded to my computer
+  2. Document all software versions needed (Stata 17, packages, etc.)
+  3. Create a "README_replication.md" with step-by-step instructions
+  4. Check that the analysis can run in the correct order with main.do
+  5. Identify any data that can't be shared (PII) and suggest what to
+     include instead (e.g., simulated data with same structure)</code></pre>
+
+    <h2 id="ra-workflow" class="anchor-heading">Working with RAs and co-authors</h2>
+
+    <h3>Briefing a new RA</h3>
+    <pre><code><span class="str">></span> A new research assistant is joining our project tomorrow.
+  They know Stata but haven't seen this project before.
+  Create an onboarding document (docs/RA_onboarding.md) that:
+  - Explains what the project is about (2 paragraphs)
+  - Describes the folder structure and what's in each folder
+  - Lists the 5 most important do files and what they do
+  - Explains our coding conventions from CLAUDE.md
+  - Gives them 3 starter tasks to get familiar with the data</code></pre>
+
+    <h3>Code review with Claude</h3>
+    <pre><code><span class="str">></span> My RA wrote this data cleaning script (analysis/01_clean.do).
+  Review it for:
+  1. Correctness: will it produce the right output?
+  2. Efficiency: are there unnecessary steps?
+  3. Conventions: does it follow our CLAUDE.md style rules?
+  4. Robustness: will it break if the data structure changes?
+  Give specific, constructive feedback she can act on.</code></pre>
+
+    <div class="exercise" id="exercise">
+      <div class="exercise-header"><span class="ex-icon">🎯</span><h4>Module 11 Exercise: Set up a team-ready project</h4></div>
+      <ol>
+        <li>If your project isn't in Git yet, initialise it: <code>git init && git add . && git commit -m "Initial"</code></li>
+        <li>Review your CLAUDE.md and add a "Team Conventions" section</li>
+        <li>Ask Claude: <em>"Create a .gitignore file appropriate for this project that excludes large data files, personal settings, and generated outputs"</em></li>
+        <li>Ask Claude to create a replication README for your project</li>
+      </ol>
+      <div class="exercise-tools"><span class="tool-tag">Git</span><span class="tool-tag">Any tool</span><span class="tool-tag">~30 min</span></div>
+    </div>
+
+    <div class="module-nav">
+      <a href="module-10.html">← <span><span class="nav-label">Previous</span> 🛠️ Building Tools</span></a>
+      <button class="complete-btn" id="complete-btn" onclick="markComplete('mod-11')">✓ Mark as complete</button>
+      <a href="module-12.html"><span class="nav-label">Next module</span> 🧠 Agents &amp; API →</a>
+    </div>
+  </main>
+</div>
+<footer class="site-footer"><p>Claude Code: From Zero to Mastery · <a href="../index.html">Home</a> · <a href="glossary.html">Glossary</a></p></footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

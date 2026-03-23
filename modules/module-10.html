@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 10: Building Tools & Apps | Claude Code Course</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/tooltip.css">
+</head>
+<body data-module="mod-10">
+<header class="site-header">
+  <button class="btn-menu" onclick="toggleSidebar()">☰</button>
+  <div class="logo"><a href="../index.html" style="color:inherit;text-decoration:none"><span>⬡</span> Claude Code <span>Course</span></a></div>
+  <nav class="header-nav"><a href="../index.html">Home</a><a href="glossary.html">Glossary</a><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></nav>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-progress"><div class="progress-bar"><div class="progress-fill"></div></div><div class="progress-text"></div></div>
+    <div class="sidebar-section"><div class="sidebar-label">Beginner</div>
+      <a href="module-00.html" class="sidebar-link" data-module="mod-00">🗺️ What is Claude Code?</a>
+      <a href="module-01.html" class="sidebar-link" data-module="mod-01">⚙️ Installation &amp; Setup</a>
+      <a href="module-02.html" class="sidebar-link" data-module="mod-02">🚀 Your First Session</a>
+      <a href="module-03.html" class="sidebar-link" data-module="mod-03">📋 CLAUDE.md</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Intermediate</div>
+      <a href="module-04.html" class="sidebar-link" data-module="mod-04">🔬 Research Workflows</a>
+      <a href="module-05.html" class="sidebar-link" data-module="mod-05">✍️ Writing &amp; LaTeX</a>
+      <a href="module-06.html" class="sidebar-link" data-module="mod-06">⚡ Slash Commands &amp; Skills</a>
+      <a href="module-07.html" class="sidebar-link" data-module="mod-07">🤖 Hooks</a>
+      <a href="module-08.html" class="sidebar-link" data-module="mod-08">🔌 MCP</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Advanced</div>
+      <a href="module-09.html" class="sidebar-link" data-module="mod-09">🏗️ Multi-file Projects</a>
+      <a href="module-10.html" class="sidebar-link active" data-module="mod-10">🛠️ Building Tools</a>
+      <a href="module-11.html" class="sidebar-link" data-module="mod-11">👥 Team Research</a>
+      <a href="module-12.html" class="sidebar-link" data-module="mod-12">🧠 Agents &amp; API</a>
+      <a href="module-13.html" class="sidebar-link" data-module="mod-13">🏆 Mastery &amp; Ethics</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Reference</div><a href="glossary.html" class="sidebar-link">📖 Jargon Library</a></div>
+  </aside>
+  <main class="main-content">
+    <div class="chip">Module 10 · Advanced · ~60 min</div>
+    <h1 class="page-title" style="margin-top:.75rem">🛠️ Building Tools &amp; Apps with Claude</h1>
+    <p class="page-subtitle">Build custom research tools — dashboards, scrapers, survey apps, and automation scripts — even without prior programming experience. Claude does the heavy lifting; you direct the work.</p>
+
+    <div class="toc">
+      <h4>In this module</h4>
+      <ol>
+        <li><a href="#what-can-you-build">What can you build?</a></li>
+        <li><a href="#data-dashboard">Building a data dashboard (R Shiny)</a></li>
+        <li><a href="#web-scraper">Building a web scraper</a></li>
+        <li><a href="#automation">Automation scripts</a></li>
+        <li><a href="#survey-tools">Survey and data collection tools</a></li>
+        <li><a href="#deploy">Deploying your tool</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+      </ol>
+    </div>
+
+    <h2 id="what-can-you-build" class="anchor-heading">What can you build?</h2>
+    <p>With Claude Code, you don't need to be a software engineer to build useful research tools. Here are things researchers have built:</p>
+
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h5 style="color:var(--cc-blue)">📊 Data tools</h5>
+        <ul>
+          <li>Interactive dashboards to share results</li>
+          <li>Data cleaning pipelines</li>
+          <li>Automated balance table generators</li>
+          <li>Database querying interfaces</li>
+          <li>Panel data validators</li>
+        </ul>
+      </div>
+      <div class="compare-card">
+        <h5 style="color:var(--cc-green)">🌐 Web tools</h5>
+        <ul>
+          <li>PDF/paper scrapers from journal websites</li>
+          <li>Price data collectors from market websites</li>
+          <li>Twitter/X data collectors</li>
+          <li>Government statistics downloaders</li>
+          <li>Wikipedia data extractors</li>
+        </ul>
+      </div>
+      <div class="compare-card">
+        <h5 style="color:var(--cc-orange)">🤖 AI-powered tools</h5>
+        <ul>
+          <li>Literature review assistants</li>
+          <li>Survey response coders</li>
+          <li>Qualitative data analysers</li>
+          <li>Paper summarisers</li>
+          <li>Grant proposal drafters</li>
+        </ul>
+      </div>
+      <div class="compare-card">
+        <h5 style="color:var(--cc-purple)">📱 Apps &amp; interfaces</h5>
+        <ul>
+          <li>Survey apps for fieldwork</li>
+          <li>Results presentation websites</li>
+          <li>Obsidian vault managers (like Hugo Sant'Anna built)</li>
+          <li>Team knowledge bases</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">🎯</div>
+      <div class="callout-body">
+        <strong>The key mindset shift</strong>
+        You're not learning to code — you're learning to <em>direct</em> code creation.
+        Your job is to know what you want and describe it clearly. Claude's job is to build it.
+        The clearer your description, the better the result.
+      </div>
+    </div>
+
+    <h2 id="data-dashboard" class="anchor-heading">Building a data dashboard (R Shiny)</h2>
+    <p>An interactive dashboard lets you (and co-authors, journals, or policymakers) explore your results visually.</p>
+
+    <pre><code><span class="str">></span> Build an R Shiny app that visualises my main results.
+  The app should:
+  - Load my cleaned dataset (data/clean/panel.rds)
+  - Have a sidebar with filters: year range, country, treatment status
+  - Show 3 plots that update based on filters:
+    1. Distribution of the main outcome variable
+    2. Map of treatment vs. control areas (I'll provide a shapefile)
+    3. Coefficient plot of my main regression
+  - Have a "Download filtered data" button
+  - Work offline (no external APIs)
+  Save to app/app.R and add instructions for running it.</code></pre>
+
+    <h2 id="web-scraper" class="anchor-heading">Building a web scraper</h2>
+
+    <div class="callout callout-warn">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body">
+        <strong>Legal and ethical note</strong>
+        Always check a website's Terms of Service before scraping. Many sites prohibit automated access.
+        Be respectful: add delays between requests, don't overload servers, and respect robots.txt.
+      </div>
+    </div>
+
+    <pre><code><span class="str">></span> Build a Python scraper that downloads agricultural price data
+  from the FAO GIEWS website.
+  Requirements:
+  - Use requests and BeautifulSoup
+  - Download monthly prices for maize, wheat, and rice
+  - For all Sub-Saharan African countries available
+  - Save to data/raw/fao_prices.csv with columns:
+    date, country, commodity, price_usd, source_url
+  - Add a 1-second delay between requests
+  - Skip URLs that return errors (log them to errors.txt)
+  - Print progress as it runs</code></pre>
+
+    <h2 id="automation" class="anchor-heading">Automation scripts</h2>
+
+    <pre><code><span class="str">></span> I receive a new household survey CSV every month from our field team.
+  Build a Python script (update_data.py) that:
+  1. Reads any new CSV files in the dropbox/incoming/ folder
+  2. Validates each file (checks for required columns, no duplicate IDs)
+  3. If valid: appends to data/clean/master_survey.parquet
+  4. If invalid: moves to dropbox/errors/ with an error report
+  5. Sends me an email summary of what was processed
+     (use smtplib, config from environment variables)
+  6. Logs everything to logs/update_log.txt</code></pre>
+
+    <h2 id="survey-tools" class="anchor-heading">Survey and data collection tools</h2>
+
+    <pre><code><span class="str">></span> I need a simple offline-capable web app for field enumerators
+  to collect household survey data on tablets.
+  Build it with plain HTML/JS (no internet required):
+  - Survey form with: household ID, GPS coordinates, 15 questions
+  - Validation: required fields, numeric ranges, consistency checks
+  - Local storage so data isn't lost if the tablet dies
+  - Export button that downloads responses as CSV
+  - Works on Android tablets with Chrome browser</code></pre>
+
+    <h2 id="deploy" class="anchor-heading">Deploying your tool</h2>
+
+    <div class="infographic">
+      <h4>Free deployment options for research tools</h4>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="step-icon">📊</div><div class="step-label">R Shiny</div><div class="step-sub">shinyapps.io (free tier)</div></div>
+        <div class="flow-step"><div class="step-icon">🌐</div><div class="step-label">Static sites</div><div class="step-sub">GitHub Pages (free)</div></div>
+        <div class="flow-step"><div class="step-icon">🐍</div><div class="step-label">Python apps</div><div class="step-sub">Streamlit Cloud (free)</div></div>
+        <div class="flow-step"><div class="step-icon">📓</div><div class="step-label">Notebooks</div><div class="step-sub">Google Colab (free)</div></div>
+      </div>
+    </div>
+
+    <div class="exercise" id="exercise">
+      <div class="exercise-header"><span class="ex-icon">🎯</span><h4>Module 10 Exercise: Build something useful</h4></div>
+      <p class="exercise-task">Build a real tool that solves a problem in your research workflow:</p>
+      <ol>
+        <li>Pick one of these starter projects (or propose your own):
+          <ul>
+            <li>An R Shiny dashboard for your main results</li>
+            <li>A Python script that downloads data you need regularly</li>
+            <li>A simple automation that saves you time each week</li>
+          </ul>
+        </li>
+        <li>Write a clear prompt describing what you want (use the 4-part formula from Module 2)</li>
+        <li>Let Claude build it, then test it and ask Claude to fix any issues</li>
+        <li>Ask Claude to add documentation explaining how to use it</li>
+      </ol>
+      <div class="exercise-tools"><span class="tool-tag">R / Python</span><span class="tool-tag">~45 min</span></div>
+    </div>
+
+    <div class="module-nav">
+      <a href="module-09.html">← <span><span class="nav-label">Previous</span> 🏗️ Multi-file Projects</span></a>
+      <button class="complete-btn" id="complete-btn" onclick="markComplete('mod-10')">✓ Mark as complete</button>
+      <a href="module-11.html"><span class="nav-label">Next module</span> 👥 Team Research →</a>
+    </div>
+  </main>
+</div>
+<footer class="site-footer"><p>Claude Code: From Zero to Mastery · <a href="../index.html">Home</a> · <a href="glossary.html">Glossary</a></p></footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

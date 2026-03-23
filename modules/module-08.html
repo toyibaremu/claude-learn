@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 8: MCP | Claude Code Course</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/tooltip.css">
+</head>
+<body data-module="mod-08">
+<header class="site-header">
+  <button class="btn-menu" onclick="toggleSidebar()">☰</button>
+  <div class="logo"><a href="../index.html" style="color:inherit;text-decoration:none"><span>⬡</span> Claude Code <span>Course</span></a></div>
+  <nav class="header-nav"><a href="../index.html">Home</a><a href="glossary.html">Glossary</a><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></nav>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-progress"><div class="progress-bar"><div class="progress-fill"></div></div><div class="progress-text"></div></div>
+    <div class="sidebar-section"><div class="sidebar-label">Beginner</div>
+      <a href="module-00.html" class="sidebar-link" data-module="mod-00">🗺️ What is Claude Code?</a>
+      <a href="module-01.html" class="sidebar-link" data-module="mod-01">⚙️ Installation &amp; Setup</a>
+      <a href="module-02.html" class="sidebar-link" data-module="mod-02">🚀 Your First Session</a>
+      <a href="module-03.html" class="sidebar-link" data-module="mod-03">📋 CLAUDE.md</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Intermediate</div>
+      <a href="module-04.html" class="sidebar-link" data-module="mod-04">🔬 Research Workflows</a>
+      <a href="module-05.html" class="sidebar-link" data-module="mod-05">✍️ Writing &amp; LaTeX</a>
+      <a href="module-06.html" class="sidebar-link" data-module="mod-06">⚡ Slash Commands &amp; Skills</a>
+      <a href="module-07.html" class="sidebar-link" data-module="mod-07">🤖 Hooks</a>
+      <a href="module-08.html" class="sidebar-link active" data-module="mod-08">🔌 MCP</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Advanced</div>
+      <a href="module-09.html" class="sidebar-link" data-module="mod-09">🏗️ Multi-file Projects</a>
+      <a href="module-10.html" class="sidebar-link" data-module="mod-10">🛠️ Building Tools</a>
+      <a href="module-11.html" class="sidebar-link" data-module="mod-11">👥 Team Research</a>
+      <a href="module-12.html" class="sidebar-link" data-module="mod-12">🧠 Agents &amp; API</a>
+      <a href="module-13.html" class="sidebar-link" data-module="mod-13">🏆 Mastery &amp; Ethics</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Reference</div><a href="glossary.html" class="sidebar-link">📖 Jargon Library</a></div>
+  </aside>
+  <main class="main-content">
+    <div class="chip">Module 8 · Intermediate · ~50 min</div>
+    <h1 class="page-title" style="margin-top:.75rem">🔌 MCP — Connecting Claude to the World</h1>
+    <p class="page-subtitle">The Model Context Protocol (MCP) lets you connect Claude Code to external tools, databases, and services — giving it superpowers beyond your local files.</p>
+
+    <div class="toc">
+      <h4>In this module</h4>
+      <ol>
+        <li><a href="#what-is-mcp">What is MCP?</a></li>
+        <li><a href="#how-it-works">How MCP works</a></li>
+        <li><a href="#adding-servers">Adding MCP servers</a></li>
+        <li><a href="#research-tools">MCP servers for researchers</a></li>
+        <li><a href="#building-mcp">Building a simple MCP server</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+      </ol>
+    </div>
+
+    <h2 id="what-is-mcp" class="anchor-heading">What is MCP?</h2>
+
+    <div class="callout callout-info">
+      <div class="callout-icon">📖</div>
+      <div class="callout-body">
+        <strong>Plain English: what is MCP?</strong>
+        By default, Claude Code can only work with files on your computer. MCP is a standard
+        way to connect Claude to <em>other things</em>: a database, a website, GitHub, Google Drive,
+        Zotero, your calendar — anything you can write a connector for.
+        Think of MCP servers as <strong>plugins</strong> that give Claude new abilities.
+      </div>
+    </div>
+
+    <div class="infographic">
+      <h4>Claude Code with MCP</h4>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="step-icon">⬡</div><div class="step-label">Claude Code</div><div class="step-sub">Your AI assistant</div></div>
+        <div class="flow-step"><div class="step-icon">🔌</div><div class="step-label">MCP Protocol</div><div class="step-sub">Standard connector</div></div>
+        <div class="flow-step"><div class="step-icon">🗄️</div><div class="step-label">Any tool</div><div class="step-sub">DB, web, APIs, files</div></div>
+        <div class="flow-step"><div class="step-icon">⚡</div><div class="step-label">Claude acts</div><div class="step-sub">Queries, writes, fetches</div></div>
+      </div>
+    </div>
+
+    <h2 id="how-it-works" class="anchor-heading">How MCP works</h2>
+    <p>An MCP server is a small program that runs on your computer (or a remote server) and exposes <strong>tools</strong> that Claude can call. For example:</p>
+    <ul>
+      <li>A <strong>database MCP server</strong> exposes tools like <code>query_database(sql)</code> and <code>list_tables()</code></li>
+      <li>A <strong>GitHub MCP server</strong> exposes tools like <code>create_pr(title, body)</code> and <code>list_issues()</code></li>
+      <li>A <strong>Zotero MCP server</strong> exposes tools like <code>search_library(query)</code> and <code>get_citation(key)</code></li>
+    </ul>
+    <p>You configure which servers to run in <code>~/.claude/settings.json</code>, and Claude automatically has access to their tools.</p>
+
+    <h2 id="adding-servers" class="anchor-heading">Adding MCP servers</h2>
+
+    <p>You add MCP servers to your settings file:</p>
+    <pre><code><span class="cmt">// ~/.claude/settings.json</span>
+{
+  <span class="str">"mcpServers"</span>: {
+    <span class="str">"filesystem"</span>: {
+      <span class="str">"command"</span>: <span class="str">"npx"</span>,
+      <span class="str">"args"</span>: [<span class="str">"-y"</span>, <span class="str">"@modelcontextprotocol/server-filesystem"</span>, <span class="str">"/Users/you/research"</span>]
+    },
+    <span class="str">"github"</span>: {
+      <span class="str">"command"</span>: <span class="str">"npx"</span>,
+      <span class="str">"args"</span>: [<span class="str">"-y"</span>, <span class="str">"@modelcontextprotocol/server-github"</span>],
+      <span class="str">"env"</span>: {
+        <span class="str">"GITHUB_PERSONAL_ACCESS_TOKEN"</span>: <span class="str">"your_token_here"</span>
+      }
+    }
+  }
+}</code></pre>
+
+    <p>Or add them via the command line (easier for beginners):</p>
+    <pre><code><span class="cmt"># Add the official Anthropic filesystem server</span>
+claude mcp add filesystem npx @modelcontextprotocol/server-filesystem ~/research
+
+<span class="cmt"># Add a GitHub server</span>
+claude mcp add github npx @modelcontextprotocol/server-github
+
+<span class="cmt"># List all configured servers</span>
+claude mcp list</code></pre>
+
+    <h2 id="research-tools" class="anchor-heading">MCP servers for researchers</h2>
+
+    <table class="cmd-table">
+      <thead><tr><th>Server</th><th>What it does</th><th>How to install</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Filesystem</strong></td>
+          <td>Enhanced file access across multiple directories</td>
+          <td><code>@modelcontextprotocol/server-filesystem</code></td>
+        </tr>
+        <tr>
+          <td><strong>GitHub</strong></td>
+          <td>Create issues, PRs, manage repos from Claude</td>
+          <td><code>@modelcontextprotocol/server-github</code></td>
+        </tr>
+        <tr>
+          <td><strong>SQLite</strong></td>
+          <td>Query SQLite databases with natural language</td>
+          <td><code>@modelcontextprotocol/server-sqlite</code></td>
+        </tr>
+        <tr>
+          <td><strong>Postgres</strong></td>
+          <td>Connect to PostgreSQL databases</td>
+          <td><code>@modelcontextprotocol/server-postgres</code></td>
+        </tr>
+        <tr>
+          <td><strong>Brave Search</strong></td>
+          <td>Search the web from within Claude</td>
+          <td><code>@modelcontextprotocol/server-brave-search</code></td>
+        </tr>
+        <tr>
+          <td><strong>Zotero</strong> (community)</td>
+          <td>Search your Zotero library, get citations</td>
+          <td>See community MCP registry</td>
+        </tr>
+        <tr>
+          <td><strong>Google Scholar</strong> (community)</td>
+          <td>Search academic papers</td>
+          <td>See community MCP registry</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Research example: Query a database directly</h3>
+    <pre><code><span class="cmt"># With SQLite MCP server configured:</span>
+<span class="str">></span> Connect to my database at data/survey.db and:
+  1. Show me all table names
+  2. Count observations in the main household table
+  3. Find all villages where more than 50% of households took up insurance
+  4. Export that list to a CSV file</code></pre>
+
+    <h3>Research example: Search your Zotero library</h3>
+    <pre><code><span class="str">></span> Search my Zotero library for papers about
+  "index insurance smallholder Africa" and give me:
+  - The 5 most relevant papers with their key findings
+  - A properly formatted bibliography entry for each
+  - Which ones I should cite in my literature review</code></pre>
+
+    <h2 id="building-mcp" class="anchor-heading">Building a simple MCP server</h2>
+
+    <p>You can build your own MCP server to connect Claude to any tool in your research stack. Here's a minimal example in Python:</p>
+
+    <pre><code><span class="cmt"># A simple MCP server that reads Stata datasets</span>
+from mcp.server import Server
+from mcp.server.models import InitializationOptions
+import mcp.types as types
+
+app = Server(<span class="str">"stata-reader"</span>)
+
+@app.list_tools()
+async def handle_list_tools() -&gt; list[types.Tool]:
+    <span class="kw">return</span> [
+        types.Tool(
+            name=<span class="str">"read_stata"</span>,
+            description=<span class="str">"Read a Stata .dta file and return summary info"</span>,
+            inputSchema={
+                <span class="str">"type"</span>: <span class="str">"object"</span>,
+                <span class="str">"properties"</span>: {
+                    <span class="str">"filepath"</span>: {<span class="str">"type"</span>: <span class="str">"string"</span>}
+                }
+            }
+        )
+    ]
+
+@app.call_tool()
+async def handle_call_tool(name: str, arguments: dict):
+    <span class="kw">if</span> name == <span class="str">"read_stata"</span>:
+        <span class="kw">import</span> pandas <span class="kw">as</span> pd
+        df = pd.read_stata(arguments[<span class="str">"filepath"</span>])
+        <span class="kw">return</span> [types.TextContent(
+            type=<span class="str">"text"</span>,
+            text=<span class="fn">str</span>(df.describe())
+        )]</code></pre>
+
+    <p>Module 12 (Agents &amp; API) goes deeper into building custom MCP servers.</p>
+
+    <div class="exercise" id="exercise">
+      <div class="exercise-header"><span class="ex-icon">🎯</span><h4>Module 8 Exercise: Add your first MCP server</h4></div>
+      <p class="exercise-task">Add the official filesystem MCP server and use it:</p>
+      <ol>
+        <li>Run: <code>claude mcp add filesystem npx @modelcontextprotocol/server-filesystem ~/Documents</code></li>
+        <li>Start a Claude Code session and ask: <em>"Using the filesystem server, list all .csv files in my Documents folder"</em></li>
+        <li>Try: <em>"Find all .do files (or .R or .py files) in my Documents and summarise what research projects I have"</em></li>
+        <li>If you have a SQLite database, add that server too and try a natural language query</li>
+      </ol>
+      <div class="exercise-tools"><span class="tool-tag">Terminal</span><span class="tool-tag">MCP</span><span class="tool-tag">~30 min</span></div>
+    </div>
+
+    <div class="module-nav">
+      <a href="module-07.html">← <span><span class="nav-label">Previous</span> 🤖 Hooks</span></a>
+      <button class="complete-btn" id="complete-btn" onclick="markComplete('mod-08')">✓ Mark as complete</button>
+      <a href="module-09.html"><span class="nav-label">Next module</span> 🏗️ Multi-file Projects →</a>
+    </div>
+  </main>
+</div>
+<footer class="site-footer"><p>Claude Code: From Zero to Mastery · <a href="../index.html">Home</a> · <a href="glossary.html">Glossary</a></p></footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

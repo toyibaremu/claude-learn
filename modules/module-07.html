@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 7: Hooks | Claude Code Course</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/tooltip.css">
+</head>
+<body data-module="mod-07">
+<header class="site-header">
+  <button class="btn-menu" onclick="toggleSidebar()">☰</button>
+  <div class="logo"><a href="../index.html" style="color:inherit;text-decoration:none"><span>⬡</span> Claude Code <span>Course</span></a></div>
+  <nav class="header-nav"><a href="../index.html">Home</a><a href="glossary.html">Glossary</a><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></nav>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-progress"><div class="progress-bar"><div class="progress-fill"></div></div><div class="progress-text"></div></div>
+    <div class="sidebar-section"><div class="sidebar-label">Beginner</div>
+      <a href="module-00.html" class="sidebar-link" data-module="mod-00">🗺️ What is Claude Code?</a>
+      <a href="module-01.html" class="sidebar-link" data-module="mod-01">⚙️ Installation &amp; Setup</a>
+      <a href="module-02.html" class="sidebar-link" data-module="mod-02">🚀 Your First Session</a>
+      <a href="module-03.html" class="sidebar-link" data-module="mod-03">📋 CLAUDE.md</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Intermediate</div>
+      <a href="module-04.html" class="sidebar-link" data-module="mod-04">🔬 Research Workflows</a>
+      <a href="module-05.html" class="sidebar-link" data-module="mod-05">✍️ Writing &amp; LaTeX</a>
+      <a href="module-06.html" class="sidebar-link" data-module="mod-06">⚡ Slash Commands &amp; Skills</a>
+      <a href="module-07.html" class="sidebar-link active" data-module="mod-07">🤖 Hooks</a>
+      <a href="module-08.html" class="sidebar-link" data-module="mod-08">🔌 MCP</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Advanced</div>
+      <a href="module-09.html" class="sidebar-link" data-module="mod-09">🏗️ Multi-file Projects</a>
+      <a href="module-10.html" class="sidebar-link" data-module="mod-10">🛠️ Building Tools</a>
+      <a href="module-11.html" class="sidebar-link" data-module="mod-11">👥 Team Research</a>
+      <a href="module-12.html" class="sidebar-link" data-module="mod-12">🧠 Agents &amp; API</a>
+      <a href="module-13.html" class="sidebar-link" data-module="mod-13">🏆 Mastery &amp; Ethics</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Reference</div><a href="glossary.html" class="sidebar-link">📖 Jargon Library</a></div>
+  </aside>
+  <main class="main-content">
+    <div class="chip">Module 7 · Intermediate · ~45 min</div>
+    <h1 class="page-title" style="margin-top:.75rem">🤖 Hooks — Automating Your Workflow</h1>
+    <p class="page-subtitle">Hooks let you set up automatic actions that run when Claude does something — like a spell check every time a file is saved, or a git commit after every task.</p>
+
+    <div class="toc">
+      <h4>In this module</h4>
+      <ol>
+        <li><a href="#what-are-hooks">What are hooks?</a></li>
+        <li><a href="#hook-types">Types of hooks</a></li>
+        <li><a href="#configuring">Configuring hooks</a></li>
+        <li><a href="#research-hooks">Research-specific hook examples</a></li>
+        <li><a href="#safety">Safety and caution</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+      </ol>
+    </div>
+
+    <h2 id="what-are-hooks" class="anchor-heading">What are hooks?</h2>
+
+    <div class="callout callout-info">
+      <div class="callout-icon">📖</div>
+      <div class="callout-body">
+        <strong>Plain English: what is a hook?</strong>
+        A hook is a "if this happens, then run that" rule you set up once. For example:
+        <em>"Every time Claude saves a do file, automatically run <code>dofile_linter</code> to check for errors."</em>
+        The hook runs in the background — you don't have to remember to do it.
+        It's like setting up an automatic alarm: configure it once, it triggers automatically.
+      </div>
+    </div>
+
+    <p>Hooks are configured in Claude Code's settings file (<code>settings.json</code>) and run as shell commands in response to events in your session.</p>
+
+    <h2 id="hook-types" class="anchor-heading">Types of hooks</h2>
+
+    <table class="cmd-table">
+      <thead><tr><th>Hook type</th><th>Triggers when...</th><th>Research use case</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>PreToolUse</code></td>
+          <td>Claude is about to use a tool (read/edit/run)</td>
+          <td>Validate a file before Claude edits it; block risky operations</td>
+        </tr>
+        <tr>
+          <td><code>PostToolUse</code></td>
+          <td>Claude just used a tool successfully</td>
+          <td>Auto-commit after every file edit; run linter after saving code</td>
+        </tr>
+        <tr>
+          <td><code>Stop</code></td>
+          <td>Claude finishes a task (stops generating)</td>
+          <td>Send a notification; run tests; log what was done</td>
+        </tr>
+        <tr>
+          <td><code>SubagentStop</code></td>
+          <td>A sub-agent finishes</td>
+          <td>Aggregate results from parallel tasks</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="configuring" class="anchor-heading">Configuring hooks</h2>
+
+    <p>Hooks are set in <code>~/.claude/settings.json</code> (global) or <code>.claude/settings.json</code> (project-level). Here's the structure:</p>
+
+    <pre><code><span class="cmt">// ~/.claude/settings.json</span>
+{
+  <span class="str">"hooks"</span>: {
+    <span class="str">"PostToolUse"</span>: [
+      {
+        <span class="str">"matcher"</span>: <span class="str">"Write"</span>,
+        <span class="str">"hooks"</span>: [
+          {
+            <span class="str">"type"</span>: <span class="str">"command"</span>,
+            <span class="str">"command"</span>: <span class="str">"echo 'File saved: $CLAUDE_FILE_PATH'"</span>
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+
+    <p>The <code>matcher</code> field specifies which tool triggers the hook (e.g., <code>"Write"</code>, <code>"Edit"</code>, <code>"Bash"</code>). You can also match on specific file patterns.</p>
+
+    <h2 id="research-hooks" class="anchor-heading">Research-specific hook examples</h2>
+
+    <h3>Auto-commit after every file edit</h3>
+    <p>Never lose work by automatically committing every change Claude makes:</p>
+    <pre><code>{
+  <span class="str">"PostToolUse"</span>: [
+    {
+      <span class="str">"matcher"</span>: <span class="str">"Write|Edit"</span>,
+      <span class="str">"hooks"</span>: [{
+        <span class="str">"type"</span>: <span class="str">"command"</span>,
+        <span class="str">"command"</span>: <span class="str">"git add -A && git commit -m 'Claude: auto-save $(date +%H:%M:%S)' 2>/dev/null || true"</span>
+      }]
+    }
+  ]
+}</code></pre>
+
+    <h3>Run Stata's dofile linter on save</h3>
+    <pre><code>{
+  <span class="str">"PostToolUse"</span>: [
+    {
+      <span class="str">"matcher"</span>: <span class="str">"Write"</span>,
+      <span class="str">"hooks"</span>: [{
+        <span class="str">"type"</span>: <span class="str">"command"</span>,
+        <span class="str">"command"</span>: <span class="str">"if [[ '$CLAUDE_FILE_PATH' == *.do ]]; then echo 'Stata file saved: $CLAUDE_FILE_PATH'; fi"</span>
+      }]
+    }
+  ]
+}</code></pre>
+
+    <h3>Desktop notification when Claude finishes a long task</h3>
+    <pre><code>{
+  <span class="str">"Stop"</span>: [
+    {
+      <span class="str">"hooks"</span>: [{
+        <span class="str">"type"</span>: <span class="str">"command"</span>,
+        <span class="str">"command"</span>: <span class="str">"osascript -e 'display notification \"Claude finished!\" with title \"Claude Code\"'"</span>
+      }]
+    }
+  ]
+}</code></pre>
+    <p><em>(Mac only — for Linux use <code>notify-send</code>, for Windows use PowerShell's <code>New-BurntToastNotification</code>)</em></p>
+
+    <h3>Log all tasks to a research journal</h3>
+    <pre><code>{
+  <span class="str">"Stop"</span>: [
+    {
+      <span class="str">"hooks"</span>: [{
+        <span class="str">"type"</span>: <span class="str">"command"</span>,
+        <span class="str">"command"</span>: <span class="str">"echo \"$(date): Claude session ended\" >> ~/research-log.txt"</span>
+      }]
+    }
+  ]
+}</code></pre>
+
+    <h2 id="safety" class="anchor-heading">Safety and caution</h2>
+
+    <div class="callout callout-danger">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body">
+        <strong>Hooks run shell commands automatically — treat them with care</strong>
+        <ul style="margin:.5rem 0 0;padding-left:1.2rem">
+          <li>A hook that deletes files or overwrites data will run every time the trigger fires</li>
+          <li>Test hooks with <code>echo</code> commands before using real operations</li>
+          <li>Never put sensitive information (API keys, passwords) in hook commands</li>
+          <li>Start simple — one hook at a time, with logging so you can see what's happening</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exercise" id="exercise">
+      <div class="exercise-header"><span class="ex-icon">🎯</span><h4>Module 7 Exercise: Set up your first hook</h4></div>
+      <p class="exercise-task">Set up a simple, safe hook that shows you what's happening:</p>
+      <ol>
+        <li>Open (or create) <code>~/.claude/settings.json</code></li>
+        <li>Add a <code>Stop</code> hook that logs "Claude finished at [time]" to a file called <code>~/claude-activity.log</code></li>
+        <li>Start a Claude Code session, give it a small task, and verify the log file was updated when Claude stopped</li>
+        <li>As a bonus: add a Mac/Linux desktop notification hook for long tasks</li>
+      </ol>
+      <p><strong>Hint:</strong> Ask Claude Code to help you write the settings.json syntax — <em>"Add a Stop hook to my settings.json that logs each session end to ~/claude-activity.log"</em></p>
+      <div class="exercise-tools"><span class="tool-tag">Terminal</span><span class="tool-tag">JSON</span><span class="tool-tag">~25 min</span></div>
+    </div>
+
+    <div class="module-nav">
+      <a href="module-06.html">← <span><span class="nav-label">Previous</span> ⚡ Slash Commands</span></a>
+      <button class="complete-btn" id="complete-btn" onclick="markComplete('mod-07')">✓ Mark as complete</button>
+      <a href="module-08.html"><span class="nav-label">Next module</span> 🔌 MCP →</a>
+    </div>
+  </main>
+</div>
+<footer class="site-footer"><p>Claude Code: From Zero to Mastery · <a href="../index.html">Home</a> · <a href="glossary.html">Glossary</a></p></footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 12: Agents & API | Claude Code Course</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/tooltip.css">
+</head>
+<body data-module="mod-12">
+<header class="site-header">
+  <button class="btn-menu" onclick="toggleSidebar()">☰</button>
+  <div class="logo"><a href="../index.html" style="color:inherit;text-decoration:none"><span>⬡</span> Claude Code <span>Course</span></a></div>
+  <nav class="header-nav"><a href="../index.html">Home</a><a href="glossary.html">Glossary</a><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></nav>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-progress"><div class="progress-bar"><div class="progress-fill"></div></div><div class="progress-text"></div></div>
+    <div class="sidebar-section"><div class="sidebar-label">Beginner</div>
+      <a href="module-00.html" class="sidebar-link" data-module="mod-00">🗺️ What is Claude Code?</a>
+      <a href="module-01.html" class="sidebar-link" data-module="mod-01">⚙️ Installation &amp; Setup</a>
+      <a href="module-02.html" class="sidebar-link" data-module="mod-02">🚀 Your First Session</a>
+      <a href="module-03.html" class="sidebar-link" data-module="mod-03">📋 CLAUDE.md</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Intermediate</div>
+      <a href="module-04.html" class="sidebar-link" data-module="mod-04">🔬 Research Workflows</a>
+      <a href="module-05.html" class="sidebar-link" data-module="mod-05">✍️ Writing &amp; LaTeX</a>
+      <a href="module-06.html" class="sidebar-link" data-module="mod-06">⚡ Slash Commands &amp; Skills</a>
+      <a href="module-07.html" class="sidebar-link" data-module="mod-07">🤖 Hooks</a>
+      <a href="module-08.html" class="sidebar-link" data-module="mod-08">🔌 MCP</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Advanced</div>
+      <a href="module-09.html" class="sidebar-link" data-module="mod-09">🏗️ Multi-file Projects</a>
+      <a href="module-10.html" class="sidebar-link" data-module="mod-10">🛠️ Building Tools</a>
+      <a href="module-11.html" class="sidebar-link" data-module="mod-11">👥 Team Research</a>
+      <a href="module-12.html" class="sidebar-link active" data-module="mod-12">🧠 Agents &amp; API</a>
+      <a href="module-13.html" class="sidebar-link" data-module="mod-13">🏆 Mastery &amp; Ethics</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Reference</div><a href="glossary.html" class="sidebar-link">📖 Jargon Library</a></div>
+  </aside>
+  <main class="main-content">
+    <div class="chip">Module 12 · Advanced · ~60 min</div>
+    <h1 class="page-title" style="margin-top:.75rem">🧠 Advanced: Agents &amp; API Integration</h1>
+    <p class="page-subtitle">Build autonomous multi-step research pipelines, call the Claude API directly, and create custom AI tools tailored to your specific research needs.</p>
+
+    <div class="toc">
+      <h4>In this module</h4>
+      <ol>
+        <li><a href="#agents">What are agents?</a></li>
+        <li><a href="#claude-api">Calling the Claude API directly</a></li>
+        <li><a href="#research-agents">Building research agents</a></li>
+        <li><a href="#sub-agents">Sub-agents in Claude Code</a></li>
+        <li><a href="#cost-management">Cost management at scale</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+      </ol>
+    </div>
+
+    <h2 id="agents" class="anchor-heading">What are agents?</h2>
+
+    <div class="callout callout-info">
+      <div class="callout-icon">📖</div>
+      <div class="callout-body">
+        <strong>Plain English: what is an AI agent?</strong>
+        A regular AI interaction is one question, one answer. An <strong>agent</strong> takes a goal
+        and works autonomously through multiple steps to achieve it — reading files, running code,
+        making decisions, correcting errors — without you needing to direct every step.
+        Think of the difference between asking someone "what's 2+2?" (one answer)
+        versus asking them to "prepare a complete tax return for me" (many steps, decisions, tasks).
+      </div>
+    </div>
+
+    <p>Claude Code is already an agentic system — it can plan and execute multi-step tasks. This module shows you how to go further: build pipelines that run autonomously, and call Claude from your own code.</p>
+
+    <h2 id="claude-api" class="anchor-heading">Calling the Claude API directly</h2>
+    <p>You can call Claude from Python or R scripts for batch processing tasks — analysing hundreds of survey responses, coding qualitative data, or classifying documents at scale.</p>
+
+    <div class="tabs">
+      <div class="tab-list">
+        <button class="tab-btn active" data-tab="api-python">Python</button>
+        <button class="tab-btn" data-tab="api-r">R</button>
+      </div>
+      <div class="tab-panel active" id="api-python">
+        <pre><code><span class="cmt"># Install: pip install anthropic</span>
+<span class="kw">import</span> anthropic
+
+client = anthropic.Anthropic()  <span class="cmt"># Uses ANTHROPIC_API_KEY env variable</span>
+
+<span class="cmt"># Simple call</span>
+message = client.messages.create(
+    model=<span class="str">"claude-sonnet-4-6"</span>,
+    max_tokens=<span class="num">1024</span>,
+    messages=[
+        {<span class="str">"role"</span>: <span class="str">"user"</span>,
+         <span class="str">"content"</span>: <span class="str">"Summarise this survey response in 2 sentences: [response]"</span>}
+    ]
+)
+<span class="fn">print</span>(message.content[<span class="num">0</span>].text)
+
+<span class="cmt"># Batch process survey responses</span>
+<span class="kw">import</span> pandas <span class="kw">as</span> pd
+
+df = pd.read_csv(<span class="str">"data/qualitative_responses.csv"</span>)
+
+df[<span class="str">"summary"</span>] = df[<span class="str">"response_text"</span>].apply(<span class="kw">lambda</span> text:
+    client.messages.create(
+        model=<span class="str">"claude-haiku-4-5-20251001"</span>,  <span class="cmt"># cheaper for batch</span>
+        max_tokens=<span class="num">200</span>,
+        messages=[{<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: <span class="fn">f</span><span class="str">"Summarise: {text}"</span>}]
+    ).content[<span class="num">0</span>].text
+)
+
+df.to_csv(<span class="str">"data/responses_with_summaries.csv"</span>, index=<span class="kw">False</span>)</code></pre>
+      </div>
+      <div class="tab-panel" id="api-r">
+        <pre><code><span class="cmt"># Install: install.packages("httr2")</span>
+<span class="kw">library</span>(httr2)
+<span class="kw">library</span>(jsonlite)
+
+call_claude &lt;- <span class="fn">function</span>(prompt, model = <span class="str">"claude-haiku-4-5-20251001"</span>) {
+  api_key &lt;- Sys.getenv(<span class="str">"ANTHROPIC_API_KEY"</span>)
+
+  request(<span class="str">"https://api.anthropic.com/v1/messages"</span>) |&gt;
+    req_headers(
+      <span class="str">"x-api-key"</span> = api_key,
+      <span class="str">"anthropic-version"</span> = <span class="str">"2023-06-01"</span>,
+      <span class="str">"content-type"</span> = <span class="str">"application/json"</span>
+    ) |&gt;
+    req_body_json(<span class="fn">list</span>(
+      model = model,
+      max_tokens = <span class="num">1024</span>,
+      messages = <span class="fn">list</span>(<span class="fn">list</span>(role = <span class="str">"user"</span>, content = prompt))
+    )) |&gt;
+    req_perform() |&gt;
+    resp_body_json() |&gt;
+    <span class="fn">pluck</span>(<span class="str">"content"</span>, <span class="num">1</span>, <span class="str">"text"</span>)
+}
+
+<span class="cmt"># Batch code qualitative responses</span>
+df &lt;- readr::read_csv(<span class="str">"data/interviews.csv"</span>)
+df$theme &lt;- purrr::map_chr(df$response, ~ call_claude(
+  <span class="fn">glue::glue</span>(<span class="str">"Classify this interview response into one of: [Economic, Social, Political, Other]. Response: {.x}"</span>)
+))
+readr::write_csv(df, <span class="str">"data/interviews_coded.csv"</span>)</code></pre>
+      </div>
+    </div>
+
+    <h2 id="research-agents" class="anchor-heading">Building research agents</h2>
+
+    <h3>Literature review agent</h3>
+    <pre><code><span class="str">></span> Build an agent that does an automated literature review.
+  Given a research question, it should:
+  1. Search for relevant papers (using Brave Search MCP or a provided list)
+  2. For each paper, extract: title, authors, year, RQ, method, findings
+  3. Identify themes and contradictions across papers
+  4. Draft a structured literature review with citations
+  5. Flag any papers it couldn't access
+
+  Research question: "What is the effect of mobile money on household savings in Africa?"
+  Search for the 20 most relevant papers from 2015–2025.</code></pre>
+
+    <h3>Data quality agent</h3>
+    <pre><code><span class="str">></span> Create a reusable data quality agent that, given any CSV file:
+  1. Profiles the data (types, N, missing %, unique values)
+  2. Detects outliers using IQR method for numeric variables
+  3. Identifies potential duplicate records
+  4. Checks for common data entry errors (e.g., "999" or "-99" as missing codes)
+  5. Generates a full HTML quality report
+  6. Recommends cleaning steps
+  Save as agents/data_quality_agent.py and make it runnable from command line:
+  python agents/data_quality_agent.py data/raw/survey.csv</code></pre>
+
+    <h2 id="sub-agents" class="anchor-heading">Sub-agents in Claude Code</h2>
+    <p>Claude Code can spin up sub-agents to work on tasks in parallel — useful for large research projects:</p>
+
+    <pre><code><span class="str">></span> I need to process 50 interview transcripts and extract key themes.
+  Use sub-agents to process them in parallel:
+  - Spawn 5 agents, each handling 10 transcripts
+  - Each agent extracts: main themes, key quotes, sentiment
+  - Combine results into a single summary file
+  Save final output to output/interview_analysis.json</code></pre>
+
+    <h2 id="cost-management" class="anchor-heading">Cost management at scale</h2>
+
+    <table class="cmd-table">
+      <thead><tr><th>Task type</th><th>Recommended model</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Batch text classification</td><td>Claude Haiku</td><td>Cheapest, fast, good at classification</td></tr>
+        <tr><td>Complex code generation</td><td>Claude Sonnet</td><td>Best balance of quality and cost</td></tr>
+        <tr><td>Research strategy, complex analysis</td><td>Claude Opus</td><td>Highest capability for hard tasks</td></tr>
+        <tr><td>Simple Q&amp;A, formatting</td><td>Claude Haiku</td><td>No need for expensive model</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">💰</div>
+      <div class="callout-body">
+        <strong>Cost-saving rule of thumb</strong>
+        Use the cheapest model that gives acceptable quality for your task.
+        For batch processing 1,000 documents, the difference between Haiku and Opus
+        can be $5 vs. $300. Test on 10 examples first with the expensive model,
+        then switch to Haiku for the full run if results are good enough.
+      </div>
+    </div>
+
+    <div class="exercise" id="exercise">
+      <div class="exercise-header"><span class="ex-icon">🎯</span><h4>Module 12 Exercise: Your first API call</h4></div>
+      <ol>
+        <li>Set your API key as an environment variable: <code>export ANTHROPIC_API_KEY="sk-ant-..."</code></li>
+        <li>Write a Python or R script (ask Claude to help) that calls Claude to classify 10 rows of text from one of your datasets</li>
+        <li>Try it with both Haiku and Sonnet and compare quality and cost</li>
+        <li>As a bonus: build the data quality agent described above and run it on one of your CSV files</li>
+      </ol>
+      <div class="exercise-tools"><span class="tool-tag">Python or R</span><span class="tool-tag">Claude API</span><span class="tool-tag">~45 min</span></div>
+    </div>
+
+    <div class="module-nav">
+      <a href="module-11.html">← <span><span class="nav-label">Previous</span> 👥 Team Research</span></a>
+      <button class="complete-btn" id="complete-btn" onclick="markComplete('mod-12')">✓ Mark as complete</button>
+      <a href="module-13.html"><span class="nav-label">Next module</span> 🏆 Mastery &amp; Ethics →</a>
+    </div>
+  </main>
+</div>
+<footer class="site-footer"><p>Claude Code: From Zero to Mastery · <a href="../index.html">Home</a> · <a href="glossary.html">Glossary</a></p></footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
