@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources & Credits | Claude Code Course</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/tooltip.css">
+  <style>
+    .credit-section { margin-bottom: 3rem; }
+    .credit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+    .credit-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.25rem; transition: border-color .15s;
+    }
+    .credit-card:hover { border-color: var(--cc-orange); }
+    .credit-card .credit-name { font-weight: 700; font-size: .95rem; margin-bottom: .2rem; }
+    .credit-card .credit-type { font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--cc-orange); margin-bottom: .5rem; }
+    .credit-card .credit-desc { font-size: .85rem; color: var(--text-muted); line-height: 1.55; margin-bottom: .6rem; }
+    .credit-card a { font-size: .82rem; }
+    .bib-entry { background: var(--bg-alt); border-left: 3px solid var(--cc-orange); padding: .75rem 1.25rem; margin: .75rem 0; font-family: var(--font-mono); font-size: .8rem; border-radius: 0 var(--radius) var(--radius) 0; }
+    .how-used { display: inline-block; font-size: .72rem; background: var(--cc-blue-lt); color: var(--cc-blue); padding: .15rem .5rem; border-radius: 99px; font-weight: 600; margin-top: .5rem; }
+    [data-theme="dark"] .how-used { background: rgba(29,78,216,.2); color: #93c5fd; }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <button class="btn-menu" onclick="toggleSidebar()">☰</button>
+  <div class="logo"><a href="../index.html" style="color:inherit;text-decoration:none"><span>⬡</span> Claude Code <span>Course</span></a></div>
+  <nav class="header-nav"><a href="../index.html">Home</a><a href="glossary.html">Glossary</a><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></nav>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-progress"><div class="progress-bar"><div class="progress-fill"></div></div><div class="progress-text"></div></div>
+    <div class="sidebar-section"><div class="sidebar-label">Modules</div>
+      <a href="module-00.html" class="sidebar-link" data-module="mod-00">🗺️ Module 0</a>
+      <a href="module-04.html" class="sidebar-link" data-module="mod-04">🔬 Module 4</a>
+      <a href="module-13.html" class="sidebar-link" data-module="mod-13">🏆 Module 13</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Reference</div>
+      <a href="glossary.html" class="sidebar-link">📖 Jargon Library</a>
+      <a href="resources.html" class="sidebar-link active">🔗 Resources &amp; Credits</a>
+    </div>
+  </aside>
+  <main class="main-content">
+    <div class="chip">Reference · Academic Integrity</div>
+    <h1 class="page-title" style="margin-top:.75rem">🔗 Resources &amp; Credits</h1>
+    <p class="page-subtitle">This course was built with and inspired by the work of many researchers, developers, and educators. Full attribution is provided below in the spirit of academic integrity and open knowledge.</p>
+
+    <div class="callout callout-done">
+      <div class="callout-icon">📜</div>
+      <div class="callout-body">
+        <strong>About this page</strong>
+        Academic research depends on proper attribution. This page lists every source that
+        informed the design, content, and examples in this course. If you build on this work,
+        please maintain these attributions and add your own.
+      </div>
+    </div>
+
+    <!-- Official documentation -->
+    <div class="credit-section">
+      <h2>Official Documentation &amp; Primary Sources</h2>
+      <div class="credit-grid">
+        <div class="credit-card">
+          <div class="credit-type">Primary Source</div>
+          <div class="credit-name">Anthropic — Claude Code Official Documentation</div>
+          <div class="credit-desc">The authoritative source for all Claude Code features, including hooks, MCP, slash commands, settings, and the agent SDK.</div>
+          <a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank" rel="noopener">docs.anthropic.com ↗</a>
+          <div class="how-used">Used in: All modules</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Primary Source</div>
+          <div class="credit-name">Anthropic — Claude API Reference</div>
+          <div class="credit-desc">Official API documentation including model IDs, pricing, rate limits, and the Messages API specification.</div>
+          <a href="https://docs.anthropic.com/en/api" target="_blank" rel="noopener">docs.anthropic.com/en/api ↗</a>
+          <div class="how-used">Used in: Module 12</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Researcher blogs -->
+    <div class="credit-section">
+      <h2>Researcher Blogs &amp; Workflow Guides</h2>
+      <div class="credit-grid">
+        <div class="credit-card">
+          <div class="credit-type">Blog / Researcher</div>
+          <div class="credit-name">Chris Blattman — claudeblattman.com</div>
+          <div class="credit-desc">Development economist at University of Chicago. Documents his Claude Code workflows for research writing, iteration, and literature review. Key inspiration for writing and revision examples in Module 5.</div>
+          <a href="https://claudeblattman.com/" target="_blank" rel="noopener">claudeblattman.com ↗</a>
+          <div class="how-used">Used in: Module 0, Module 5</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Blog / Researcher</div>
+          <div class="credit-name">Pedro Sant'Anna — "Claude Code: My Workflow"</div>
+          <div class="credit-desc">Econometrician at Vanderbilt/Microsoft Research. Provides a detailed walkthrough of his Claude Code setup including CLAUDE.md structure, custom skills, and full analysis pipeline workflows. Heavily influenced Modules 3 and 4.</div>
+          <a href="https://psantanna.com/claude-code-my-workflow/" target="_blank" rel="noopener">psantanna.com ↗</a>
+          <div class="how-used">Used in: Module 3, Module 4, Module 6</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Blog / Developer</div>
+          <div class="credit-name">Boris Tane — "How I Use Claude Code"</div>
+          <div class="credit-desc">Software developer documenting practical Claude Code workflows for building applications, managing codebases, and integrating with development tools.</div>
+          <a href="https://boristane.com/blog/how-i-use-claude-code/" target="_blank" rel="noopener">boristane.com ↗</a>
+          <div class="how-used">Used in: Module 2, Module 9, Module 10</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Blog / Developer</div>
+          <div class="credit-name">Simon Willison — simonwillison.net</div>
+          <div class="credit-desc">Independent developer and AI researcher known for deep, technical analysis of AI tools. Key source for understanding LLM capabilities, limitations, and practical deployment patterns.</div>
+          <a href="https://simonwillison.net/" target="_blank" rel="noopener">simonwillison.net ↗</a>
+          <div class="how-used">Used in: Module 0, Module 13</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Substacks and newsletters -->
+    <div class="credit-section">
+      <h2>Newsletters &amp; Substacks</h2>
+      <div class="credit-grid">
+        <div class="credit-card">
+          <div class="credit-type">Newsletter / Substack</div>
+          <div class="credit-name">GenAI for Economists — genaiforecon.substack.com</div>
+          <div class="credit-desc">Newsletter focused on practical applications of generative AI in economics research. Provided framing for how economists are integrating AI into their research workflows.</div>
+          <a href="https://genaiforecon.substack.com/" target="_blank" rel="noopener">genaiforecon.substack.com ↗</a>
+          <div class="how-used">Used in: Module 0, Module 4</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Newsletter / Substack</div>
+          <div class="credit-name">Get Calibrated — "The Economist in the Machine"</div>
+          <div class="credit-desc">Essay on what AI tools mean for economists' role in research — exploring the distinction between what AI can and cannot do in applied economics research.</div>
+          <a href="https://getcalibrated.substack.com/p/the-economist-in-the-machine-what" target="_blank" rel="noopener">getcalibrated.substack.com ↗</a>
+          <div class="how-used">Used in: Module 0, Module 13</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Newsletter / Substack</div>
+          <div class="credit-name">Modelling an Unforeseeable Future — "AI as Research Collaborator"</div>
+          <div class="credit-desc">Thoughtful essay on using AI as a genuine research collaborator rather than just a tool — the framing that shapes this course's approach throughout.</div>
+          <a href="https://modelinganunforeseeablefuture.substack.com/p/ai-as-a-research-collaborator-not" target="_blank" rel="noopener">modelinganunforeseeablefuture.substack.com ↗</a>
+          <div class="how-used">Used in: Module 0, Module 4</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Newsletter / Substack</div>
+          <div class="credit-name">Ted Svo — "Agentic Everything"</div>
+          <div class="credit-desc">Analysis of the shift to agentic AI workflows — how AI goes from answering questions to taking sequences of actions. Key inspiration for Module 12 on agents.</div>
+          <a href="https://tedsvo.substack.com/p/agentic-everything" target="_blank" rel="noopener">tedsvo.substack.com ↗</a>
+          <div class="how-used">Used in: Module 12</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Newsletter / Substack</div>
+          <div class="credit-name">ReSkilled — reskilled.substack.com</div>
+          <div class="credit-desc">Newsletter focused on AI tools for researchers and knowledge workers, with practical coverage of Claude Code and other AI coding tools.</div>
+          <a href="https://reskilled.substack.com/" target="_blank" rel="noopener">reskilled.substack.com ↗</a>
+          <div class="how-used">Used in: Module 1, Module 2</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GitHub repos -->
+    <div class="credit-section">
+      <h2>Open-Source Projects &amp; GitHub Repositories</h2>
+      <div class="credit-grid">
+        <div class="credit-card">
+          <div class="credit-type">GitHub Repository</div>
+          <div class="credit-name">Scott Cunningham — MixtapeTools</div>
+          <div class="credit-desc">Collection of Claude Code skills for causal inference methods (DiD, RDD, IV). Authored by Scott Cunningham, author of "Causal Inference: The Mixtape". Key inspiration for custom skills and research-specific workflows in Module 6.</div>
+          <a href="https://github.com/scunning1975/MixtapeTools/tree/main/skills" target="_blank" rel="noopener">github.com/scunning1975/MixtapeTools ↗</a>
+          <div class="how-used">Used in: Module 6</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">GitHub Repository</div>
+          <div class="credit-name">meleantonio — ChernyCode</div>
+          <div class="credit-desc">Example repository demonstrating Claude Code workflows and configurations for economics research. Provided examples of CLAUDE.md patterns and project structures.</div>
+          <a href="https://github.com/meleantonio/ChernyCode" target="_blank" rel="noopener">github.com/meleantonio/ChernyCode ↗</a>
+          <div class="how-used">Used in: Module 3, Module 9</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">GitHub Repository</div>
+          <div class="credit-name">Hugo Sant'Anna — Obsidian Vault Manager</div>
+          <div class="credit-desc">Tool for managing Obsidian note-taking vaults using Claude Code. Demonstrates real-world application of building custom tools with Claude Code for personal knowledge management.</div>
+          <a href="https://github.com/hugosantanna/obsidian-vault-manager" target="_blank" rel="noopener">github.com/hugosantanna/obsidian-vault-manager ↗</a>
+          <div class="how-used">Used in: Module 10</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">GitHub Repository</div>
+          <div class="credit-name">Alalalalaki — Guide2EconRA</div>
+          <div class="credit-desc">Comprehensive guide to software tools and workflows for economics research assistants. Informed the section on standard tools and conventions in applied economics research.</div>
+          <a href="https://github.com/Alalalalaki/Guide2EconRA" target="_blank" rel="noopener">github.com/Alalalalaki/Guide2EconRA ↗</a>
+          <div class="how-used">Used in: Module 9, Module 11</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">GitHub Repository</div>
+          <div class="credit-name">ChrisWiles — claude-code-showcase</div>
+          <div class="credit-desc">Showcase of Claude Code capabilities and example workflows. Provided examples and demos that informed the practical exercises throughout the course.</div>
+          <a href="https://github.com/ChrisWiles/claude-code-showcase" target="_blank" rel="noopener">github.com/ChrisWiles/claude-code-showcase ↗</a>
+          <div class="how-used">Used in: Multiple modules</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Curated lists -->
+    <div class="credit-section">
+      <h2>Curated Lists &amp; Websites</h2>
+      <div class="credit-grid">
+        <div class="credit-card">
+          <div class="credit-type">Website / Curated List</div>
+          <div class="credit-name">meleantonio — Awesome Econ AI Stuff</div>
+          <div class="credit-desc">Comprehensive curated list of AI tools and resources for economists. Used as a reference for the broader ecosystem of tools that complement Claude Code in research workflows.</div>
+          <a href="https://meleantonio.github.io/awesome-econ-ai-stuff/" target="_blank" rel="noopener">meleantonio.github.io/awesome-econ-ai-stuff ↗</a>
+          <div class="how-used">Used in: Resources, Module 13</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Website / Policy</div>
+          <div class="credit-name">AEI — AI Tools for Economists and Policy Analysts</div>
+          <div class="credit-desc">American Enterprise Institute overview of AI tools relevant to economists and policy analysts. Provided policy context and broader framing for AI in economics research.</div>
+          <a href="https://www.aei.org/technology-and-innovation/ai-tools-for-economists-and-policy-analysts/" target="_blank" rel="noopener">aei.org ↗</a>
+          <div class="how-used">Used in: Module 0, Module 13</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Website / Tool</div>
+          <div class="credit-name">Gexijin — Vibe (gexijin.github.io/vibe)</div>
+          <div class="credit-desc">AI-assisted data analysis and visualisation tool. Context for how researchers use AI tools for data exploration and the broader landscape of AI-assisted research tools.</div>
+          <a href="https://gexijin.github.io/vibe/" target="_blank" rel="noopener">gexijin.github.io/vibe ↗</a>
+          <div class="how-used">Used in: Module 10</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Website / Tool</div>
+          <div class="credit-name">Hugo Sant'Anna — CLO Author</div>
+          <div class="credit-desc">Demonstrates AI-assisted academic writing workflows. Provided examples of how AI can support the writing process for academic papers.</div>
+          <a href="https://hsantanna.org/clo-author/#how-it-works" target="_blank" rel="noopener">hsantanna.org/clo-author ↗</a>
+          <div class="how-used">Used in: Module 5</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Website / Lab</div>
+          <div class="credit-name">APE Lab — ape.socialcatalystlab.org</div>
+          <div class="credit-desc">Applied Policy and Economics Lab demonstrating AI integration in development research and policy analysis workflows.</div>
+          <a href="https://ape.socialcatalystlab.org/" target="_blank" rel="noopener">ape.socialcatalystlab.org ↗</a>
+          <div class="how-used">Used in: Module 4, Module 13</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to cite this course -->
+    <div class="credit-section">
+      <h2>How to Cite This Course</h2>
+      <p>If you use this course in teaching, research, or other materials, please cite it as follows:</p>
+      <div class="bib-entry">
+Ibaremu, T. (2026). <em>Claude Code: From Zero to Mastery — A Course for Researchers and Social Scientists</em>.
+GitHub. https://github.com/toyibaremu/claude-learn
+      </div>
+      <p>BibTeX:</p>
+      <div class="bib-entry">
+@misc{ibaremu2026claudelearn,
+  author       = {Ibaremu, Toyib},
+  title        = {Claude Code: From Zero to Mastery},
+  year         = {2026},
+  publisher    = {GitHub},
+  howpublished = {\url{https://github.com/toyibaremu/claude-learn}},
+  note         = {Open-source course for researchers and social scientists}
+}
+      </div>
+    </div>
+
+    <!-- License -->
+    <div class="credit-section">
+      <h2>License</h2>
+      <p>
+        This course is released under the <strong>MIT License</strong>. You are free to use, copy, modify,
+        merge, publish, distribute, sublicense, and/or sell copies of this material, provided the
+        original attribution is maintained.
+      </p>
+      <p>
+        The course was built with assistance from <strong>Claude Code</strong> (Anthropic, claude-sonnet-4-6).
+        All content has been reviewed and edited by the course author.
+      </p>
+    </div>
+
+    <!-- Contributing -->
+    <div class="credit-section">
+      <h2>Contributing</h2>
+      <p>This course is open to contributions from the community. If you have:</p>
+      <ul>
+        <li>A CLAUDE.md template for a specific field (e.g., public health, political science)</li>
+        <li>Custom skills for research workflows you'd like to share</li>
+        <li>Corrections or updates to any module</li>
+        <li>Translations into other languages</li>
+        <li>Additional resources that should be credited</li>
+      </ul>
+      <p>Please <a href="https://github.com/toyibaremu/claude-learn/issues" target="_blank" rel="noopener">open an issue</a> or submit a pull request on GitHub.</p>
+    </div>
+  </main>
+</div>
+<footer class="site-footer"><p>Claude Code: From Zero to Mastery · <a href="../index.html">Home</a> · <a href="glossary.html">Glossary</a> · MIT License</p></footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1: Installation & Setup | Claude Code Course</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/tooltip.css">
+</head>
+<body data-module="mod-01">
+
+<header class="site-header">
+  <button class="btn-menu" onclick="toggleSidebar()" aria-label="Open menu">☰</button>
+  <div class="logo"><a href="../index.html" style="color:inherit;text-decoration:none"><span>⬡</span> Claude Code <span>Course</span></a></div>
+  <nav class="header-nav">
+    <a href="../index.html">Home</a>
+    <a href="glossary.html">Glossary</a>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-progress">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <div class="progress-text"></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Beginner</div>
+      <a href="module-00.html" class="sidebar-link" data-module="mod-00">🗺️ What is Claude Code?</a>
+      <a href="module-01.html" class="sidebar-link active" data-module="mod-01">⚙️ Installation &amp; Setup</a>
+      <a href="module-02.html" class="sidebar-link" data-module="mod-02">🚀 Your First Session</a>
+      <a href="module-03.html" class="sidebar-link" data-module="mod-03">📋 CLAUDE.md</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Intermediate</div>
+      <a href="module-04.html" class="sidebar-link" data-module="mod-04">🔬 Research Workflows</a>
+      <a href="module-05.html" class="sidebar-link" data-module="mod-05">✍️ Writing &amp; LaTeX</a>
+      <a href="module-06.html" class="sidebar-link" data-module="mod-06">⚡ Slash Commands &amp; Skills</a>
+      <a href="module-07.html" class="sidebar-link" data-module="mod-07">🤖 Hooks</a>
+      <a href="module-08.html" class="sidebar-link" data-module="mod-08">🔌 MCP</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Advanced</div>
+      <a href="module-09.html" class="sidebar-link" data-module="mod-09">🏗️ Multi-file Projects</a>
+      <a href="module-10.html" class="sidebar-link" data-module="mod-10">🛠️ Building Tools</a>
+      <a href="module-11.html" class="sidebar-link" data-module="mod-11">👥 Team Research</a>
+      <a href="module-12.html" class="sidebar-link" data-module="mod-12">🧠 Agents &amp; API</a>
+      <a href="module-13.html" class="sidebar-link" data-module="mod-13">🏆 Mastery &amp; Ethics</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Reference</div>
+      <a href="glossary.html" class="sidebar-link">📖 Jargon Library</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="chip">Module 1 · Beginner · ~30 min</div>
+    <h1 class="page-title" style="margin-top:.75rem">⚙️ Installation &amp; Setup</h1>
+    <p class="page-subtitle">Get Claude Code running on your computer in under 15 minutes — step by step, no assumptions made.</p>
+
+    <div class="toc">
+      <h4>In this module</h4>
+      <ol>
+        <li><a href="#what-youll-need">What you'll need</a></li>
+        <li><a href="#option-web">Option A: Claude Code on the web (no install)</a></li>
+        <li><a href="#option-terminal">Option B: Claude Code in your terminal</a></li>
+        <li><a href="#install-mac">Installing on Mac</a></li>
+        <li><a href="#install-windows">Installing on Windows</a></li>
+        <li><a href="#install-linux">Installing on Linux</a></li>
+        <li><a href="#api-key">Getting your API key</a></li>
+        <li><a href="#cost">Understanding cost</a></li>
+        <li><a href="#verify">Verify your installation</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+      </ol>
+    </div>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">😌</div>
+      <div class="callout-body">
+        <strong>Don't panic about the terminal</strong>
+        The terminal (also called the command line or shell) sounds intimidating, but we'll walk
+        through every step. If you've ever typed a command in Stata or R's console, you already
+        understand the core concept. It's just another place to type instructions.
+      </div>
+    </div>
+
+    <!-- Section 1 -->
+    <h2 id="what-youll-need" class="anchor-heading">What you'll need</h2>
+    <ul>
+      <li>A computer running <strong>Mac, Windows, or Linux</strong></li>
+      <li>An internet connection</li>
+      <li>An <strong>Anthropic account</strong> (free to create at <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a>)</li>
+      <li>~$5–10 to add to your API account (or a Claude Pro subscription for the web option)</li>
+      <li>About 15–30 minutes</li>
+    </ul>
+
+    <!-- Section 2: Web option -->
+    <h2 id="option-web" class="anchor-heading">Option A: Claude Code on the web (easiest)</h2>
+    <p>
+      If you have a <strong>Claude.ai Pro, Team, or Max subscription</strong>, you can use Claude Code
+      directly in your browser — no installation required.
+    </p>
+    <div class="infographic">
+      <h4>How to use Claude Code on the web</h4>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="step-icon">🌐</div>
+          <div class="step-label">Go to claude.ai</div>
+          <div class="step-sub">Log in with your account</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-icon">📁</div>
+          <div class="step-label">Open Projects</div>
+          <div class="step-sub">Click "Projects" in the left sidebar</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-icon">➕</div>
+          <div class="step-label">New Project</div>
+          <div class="step-sub">Create a project for your research</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-icon">📤</div>
+          <div class="step-label">Upload files</div>
+          <div class="step-sub">Add your data, code, notes</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-icon">💬</div>
+          <div class="step-label">Start chatting</div>
+          <div class="step-sub">Ask Claude to help with your project</div>
+        </div>
+      </div>
+    </div>
+    <div class="callout callout-warn">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body">
+        <strong>Web vs. Terminal: key difference</strong>
+        The web version is great for getting started, but the terminal version is more powerful —
+        it can directly read and write files on your computer without you uploading them,
+        run code, and integrate with your whole project folder automatically. Most power users prefer the terminal.
+        This course covers both. Start with whichever feels comfortable.
+      </div>
+    </div>
+
+    <!-- Section 3: Terminal option -->
+    <h2 id="option-terminal" class="anchor-heading">Option B: Claude Code in your terminal (recommended for power use)</h2>
+    <p>
+      The terminal version of Claude Code requires installing two things:
+    </p>
+    <ol>
+      <li><strong>Node.js</strong> — a runtime environment that Claude Code needs to run</li>
+      <li><strong>Claude Code itself</strong> — installed using <code>npm</code> (a package manager that comes with Node.js)</li>
+    </ol>
+
+    <div class="callout callout-info">
+      <div class="callout-icon">📖</div>
+      <div class="callout-body">
+        <strong>Jargon check: What is npm?</strong>
+        npm stands for "Node Package Manager". Think of it like Stata's <code>ssc install</code> or R's
+        <code>install.packages()</code> — it's a way to download and install software tools from the internet
+        with a single command. You won't need to understand it deeply; just use it to install Claude Code.
+      </div>
+    </div>
+
+    <!-- Mac -->
+    <h2 id="install-mac" class="anchor-heading">Installing on Mac</h2>
+
+    <p><strong>Step 1: Open your Terminal</strong></p>
+    <p>Press <code>Cmd + Space</code>, type "Terminal", and press Enter. You'll see a window with a blinking cursor.</p>
+
+    <p><strong>Step 2: Install Node.js</strong></p>
+    <p>Go to <a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a>, download the LTS version, and run the installer. Or, if you have Homebrew:</p>
+    <pre><code><span class="cmt"># If you have Homebrew (a Mac package manager)</span>
+brew install node
+
+<span class="cmt"># Check it worked — you should see a version number like "v22.x.x"</span>
+node --version</code></pre>
+
+    <p><strong>Step 3: Install Claude Code</strong></p>
+    <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+    <p>The <code>-g</code> flag means "install globally" — so you can use it anywhere on your computer, not just in one folder.</p>
+
+    <p><strong>Step 4: Start Claude Code</strong></p>
+    <pre><code><span class="cmt"># Navigate to your project folder first</span>
+cd ~/Documents/my-research-project
+
+<span class="cmt"># Then start Claude Code</span>
+claude</code></pre>
+
+    <!-- Windows -->
+    <h2 id="install-windows" class="anchor-heading">Installing on Windows</h2>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <strong>Recommended: Use WSL (Windows Subsystem for Linux)</strong>
+        Claude Code works best on Windows through WSL — a built-in Windows feature that gives you
+        a Linux environment. It's easier than it sounds. Follow these steps:
+      </div>
+    </div>
+
+    <p><strong>Step 1: Enable WSL</strong></p>
+    <p>Open PowerShell as Administrator (search "PowerShell", right-click → "Run as administrator") and run:</p>
+    <pre><code>wsl --install</code></pre>
+    <p>Restart your computer when prompted.</p>
+
+    <p><strong>Step 2: Open Ubuntu (WSL)</strong></p>
+    <p>Search for "Ubuntu" in your Start menu. The first time you open it, set up a username and password.</p>
+
+    <p><strong>Step 3: Install Node.js inside WSL</strong></p>
+    <pre><code><span class="cmt"># Install Node.js version manager (nvm)</span>
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+<span class="cmt"># Reload your shell settings</span>
+source ~/.bashrc
+
+<span class="cmt"># Install the latest LTS version of Node.js</span>
+nvm install --lts
+
+<span class="cmt"># Check it worked</span>
+node --version</code></pre>
+
+    <p><strong>Step 4: Install Claude Code</strong></p>
+    <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <strong>Alternative: Native Windows (without WSL)</strong>
+        Claude Code does work on Windows natively. Download Node.js from <a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a>,
+        install it, then open Command Prompt or PowerShell and run
+        <code>npm install -g @anthropic-ai/claude-code</code>. WSL is just recommended for a smoother experience.
+      </div>
+    </div>
+
+    <!-- Linux -->
+    <h2 id="install-linux" class="anchor-heading">Installing on Linux</h2>
+    <pre><code><span class="cmt"># Install Node.js (Ubuntu/Debian)</span>
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+<span class="cmt"># Install Claude Code</span>
+npm install -g @anthropic-ai/claude-code
+
+<span class="cmt"># Verify</span>
+claude --version</code></pre>
+
+    <!-- API Key -->
+    <h2 id="api-key" class="anchor-heading">Getting your API key</h2>
+
+    <p>
+      An API key is like a password that lets Claude Code connect to Anthropic's servers on your behalf.
+      You need one to use the terminal version of Claude Code.
+    </p>
+
+    <div class="infographic">
+      <h4>How to get your API key</h4>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="step-icon">🌐</div>
+          <div class="step-label">Visit</div>
+          <div class="step-sub">console.anthropic.com</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-icon">👤</div>
+          <div class="step-label">Create account</div>
+          <div class="step-sub">Sign up (free)</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-icon">💳</div>
+          <div class="step-label">Add credit</div>
+          <div class="step-sub">$5 minimum to start</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-icon">🔑</div>
+          <div class="step-label">Create API key</div>
+          <div class="step-sub">Under "API Keys" section</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-icon">📋</div>
+          <div class="step-label">Copy key</div>
+          <div class="step-sub">Starts with sk-ant-...</div>
+        </div>
+      </div>
+    </div>
+
+    <p>When you first run <code>claude</code>, it will ask for your API key. Paste it in and press Enter. Claude Code stores it securely — you only need to do this once.</p>
+
+    <div class="callout callout-danger">
+      <div class="callout-icon">🔒</div>
+      <div class="callout-body">
+        <strong>Keep your API key secret!</strong>
+        Your API key is like a password with a credit card attached. Never share it, never paste it
+        into a document or email, never commit it to GitHub. If you accidentally expose it, go to
+        console.anthropic.com immediately and delete it, then create a new one.
+      </div>
+    </div>
+
+    <!-- Cost -->
+    <h2 id="cost" class="anchor-heading">Understanding cost</h2>
+
+    <p>
+      Claude Code charges per use, measured in <strong>tokens</strong> (roughly ¾ of a word).
+      You pay for what you use, like a prepaid phone plan.
+    </p>
+
+    <table class="cmd-table">
+      <thead>
+        <tr><th>Usage pattern</th><th>Estimated monthly cost</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Light use (a few sessions/week)</td><td>$3–10</td></tr>
+        <tr><td>Regular use (daily, moderate sessions)</td><td>$10–40</td></tr>
+        <tr><td>Heavy use (all-day coding assistant)</td><td>$40–100+</td></tr>
+        <tr><td>Claude Code Max subscription</td><td>$100/month flat</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">💰</div>
+      <div class="callout-body">
+        <strong>Tip for staying within budget</strong>
+        Set a spending limit at console.anthropic.com → "Billing" → "Usage limits".
+        Start with $10 and increase as you learn. Most researchers find $15–30/month covers daily use comfortably.
+      </div>
+    </div>
+
+    <!-- Verify -->
+    <h2 id="verify" class="anchor-heading">Verify your installation</h2>
+
+    <p>Run these commands to confirm everything is working:</p>
+
+    <pre><code><span class="cmt"># Check Claude Code is installed</span>
+claude --version
+
+<span class="cmt"># Start a session (creates a test folder first)</span>
+mkdir ~/claude-test && cd ~/claude-test
+claude
+
+<span class="cmt"># Claude Code will start and show a prompt like:</span>
+<span class="str">> </span></code></pre>
+
+    <p>If you see the <code>&gt;</code> prompt, you're in! Type "hello" to test it. Claude should respond — and that's Claude Code running on your computer.</p>
+
+    <p>To exit Claude Code, type <code>/exit</code> or press <code>Ctrl+C</code>.</p>
+
+    <div class="callout callout-warn">
+      <div class="callout-icon">🛠️</div>
+      <div class="callout-body">
+        <strong>Troubleshooting: common issues</strong>
+        <ul style="margin:.5rem 0 0;padding-left:1.2rem">
+          <li><strong>"command not found: claude"</strong> — Node.js might not be installed correctly. Try closing and reopening the terminal.</li>
+          <li><strong>"permission denied"</strong> — On Mac/Linux, try: <code>sudo npm install -g @anthropic-ai/claude-code</code></li>
+          <li><strong>API key not working</strong> — Make sure you added billing credits at console.anthropic.com</li>
+          <li>Still stuck? See the <a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank" rel="noopener">official docs</a> or post in the GitHub issues.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Exercise -->
+    <div class="exercise" id="exercise">
+      <div class="exercise-header">
+        <span class="ex-icon">🎯</span>
+        <h4>Module 1 Exercise: Get it running!</h4>
+      </div>
+      <p class="exercise-task">Complete all three steps:</p>
+      <ol>
+        <li>Install Claude Code using the instructions for your operating system above.</li>
+        <li>Get your API key from console.anthropic.com and connect it.</li>
+        <li>Navigate to a folder on your computer (it can be any folder — your Desktop, or a project folder), start Claude Code, and ask it: <strong>"What files are in this folder and what do you think they're for?"</strong></li>
+      </ol>
+      <p>You've succeeded when Claude Code describes your files back to you. Congratulations — you have a working Claude Code setup!</p>
+      <div class="exercise-tools">
+        <span class="tool-tag">Terminal</span>
+        <span class="tool-tag">~15 min</span>
+      </div>
+    </div>
+
+    <div class="module-nav">
+      <a href="module-00.html">
+        ← <span><span class="nav-label">Previous</span> 🗺️ What is Claude Code?</span>
+      </a>
+      <button class="complete-btn" id="complete-btn" onclick="markComplete('mod-01')">
+        ✓ Mark as complete
+      </button>
+      <a href="module-02.html">
+        <span class="nav-label">Next module</span>
+        🚀 Your First Session →
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">
+  <p>Claude Code: From Zero to Mastery · <a href="../index.html">Home</a> · <a href="glossary.html">Glossary</a></p>
+</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

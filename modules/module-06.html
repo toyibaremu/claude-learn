@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 6: Slash Commands & Skills | Claude Code Course</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/tooltip.css">
+</head>
+<body data-module="mod-06">
+<header class="site-header">
+  <button class="btn-menu" onclick="toggleSidebar()">☰</button>
+  <div class="logo"><a href="../index.html" style="color:inherit;text-decoration:none"><span>⬡</span> Claude Code <span>Course</span></a></div>
+  <nav class="header-nav"><a href="../index.html">Home</a><a href="glossary.html">Glossary</a><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></nav>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-progress"><div class="progress-bar"><div class="progress-fill"></div></div><div class="progress-text"></div></div>
+    <div class="sidebar-section"><div class="sidebar-label">Beginner</div>
+      <a href="module-00.html" class="sidebar-link" data-module="mod-00">🗺️ What is Claude Code?</a>
+      <a href="module-01.html" class="sidebar-link" data-module="mod-01">⚙️ Installation &amp; Setup</a>
+      <a href="module-02.html" class="sidebar-link" data-module="mod-02">🚀 Your First Session</a>
+      <a href="module-03.html" class="sidebar-link" data-module="mod-03">📋 CLAUDE.md</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Intermediate</div>
+      <a href="module-04.html" class="sidebar-link" data-module="mod-04">🔬 Research Workflows</a>
+      <a href="module-05.html" class="sidebar-link" data-module="mod-05">✍️ Writing &amp; LaTeX</a>
+      <a href="module-06.html" class="sidebar-link active" data-module="mod-06">⚡ Slash Commands &amp; Skills</a>
+      <a href="module-07.html" class="sidebar-link" data-module="mod-07">🤖 Hooks</a>
+      <a href="module-08.html" class="sidebar-link" data-module="mod-08">🔌 MCP</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Advanced</div>
+      <a href="module-09.html" class="sidebar-link" data-module="mod-09">🏗️ Multi-file Projects</a>
+      <a href="module-10.html" class="sidebar-link" data-module="mod-10">🛠️ Building Tools</a>
+      <a href="module-11.html" class="sidebar-link" data-module="mod-11">👥 Team Research</a>
+      <a href="module-12.html" class="sidebar-link" data-module="mod-12">🧠 Agents &amp; API</a>
+      <a href="module-13.html" class="sidebar-link" data-module="mod-13">🏆 Mastery &amp; Ethics</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Reference</div><a href="glossary.html" class="sidebar-link">📖 Jargon Library</a></div>
+  </aside>
+  <main class="main-content">
+    <div class="chip">Module 6 · Intermediate · ~40 min</div>
+    <h1 class="page-title" style="margin-top:.75rem">⚡ Slash Commands &amp; Skills</h1>
+    <p class="page-subtitle">Speed up your workflow with built-in shortcuts and create your own custom commands for tasks you do repeatedly.</p>
+
+    <div class="toc">
+      <h4>In this module</h4>
+      <ol>
+        <li><a href="#builtin">Built-in slash commands</a></li>
+        <li><a href="#what-are-skills">What are skills?</a></li>
+        <li><a href="#creating-skills">Creating your own skills</a></li>
+        <li><a href="#research-skills">Research skills examples</a></li>
+        <li><a href="#sharing-skills">Sharing skills with your team</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+      </ol>
+    </div>
+
+    <h2 id="builtin" class="anchor-heading">Built-in slash commands</h2>
+    <p>Type <code>/</code> at any point in a Claude Code session to see available commands. Here are the most useful ones:</p>
+
+    <table class="cmd-table">
+      <thead><tr><th>Command</th><th>What it does</th><th>When to use</th></tr></thead>
+      <tbody>
+        <tr><td><code>/help</code></td><td>Show all commands and shortcuts</td><td>When you forget something</td></tr>
+        <tr><td><code>/clear</code></td><td>Start a fresh conversation (keep files)</td><td>When conversation gets too long</td></tr>
+        <tr><td><code>/compact</code></td><td>Summarise conversation to save context</td><td>Long sessions with lots of context</td></tr>
+        <tr><td><code>/status</code></td><td>Show current usage and model info</td><td>Check how much context is left</td></tr>
+        <tr><td><code>/model</code></td><td>Switch between Claude models</td><td>Use a cheaper model for simple tasks</td></tr>
+        <tr><td><code>/cost</code></td><td>Show estimated cost for this session</td><td>Keep track of spending</td></tr>
+        <tr><td><code>/exit</code></td><td>Exit Claude Code</td><td>End of session</td></tr>
+        <tr><td><code>/bug</code></td><td>Report a bug to Anthropic</td><td>Something isn't working right</td></tr>
+        <tr><td><code>/doctor</code></td><td>Diagnose your Claude Code installation</td><td>Something seems broken</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="what-are-skills" class="anchor-heading">What are skills?</h2>
+    <p>
+      Skills are <strong>custom slash commands you create</strong>. They're Markdown files that contain
+      instructions — when you type the skill name with a <code>/</code>, Claude Code reads those instructions
+      and uses them as context for the current task.
+    </p>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <strong>Think of skills as macros for your AI assistant</strong>
+        Just like you might create a Stata macro or R function for something you do repeatedly,
+        a skill packages up a set of instructions into a single command you can reuse forever.
+      </div>
+    </div>
+
+    <div class="infographic">
+      <h4>Where skills live</h4>
+      <div style="font-family:var(--font-mono);font-size:.875rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;line-height:1.8">
+        <span style="color:#fcd34d">my-project/</span><br>
+        ├── CLAUDE.md<br>
+        └── <span style="color:#86efac;font-weight:700">.claude/</span>         <span style="color:var(--text-muted)">← Claude Code config folder</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;└── <span style="color:#86efac;font-weight:700">commands/</span>    <span style="color:var(--text-muted)">← Your custom skills go here</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── balance-table.md<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── summarise-data.md<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── referee-response.md
+      </div>
+    </div>
+
+    <p>Once a skill file exists, you use it by typing <code>/balance-table</code> (or whatever you named it) in your session.</p>
+
+    <h2 id="creating-skills" class="anchor-heading">Creating your own skills</h2>
+
+    <p>A skill file is just a Markdown file with instructions. Here's how to create one:</p>
+
+    <pre><code><span class="cmt"># Create the directory</span>
+mkdir -p .claude/commands
+
+<span class="cmt"># Create your skill file</span>
+<span class="cmt"># (Claude Code will help you write the content)</span>
+claude
+<span class="str">></span> Create a skill called "balance-table" that generates a
+  standard balance table comparing treatment and control groups.
+  Save it to .claude/commands/balance-table.md</code></pre>
+
+    <p>Or write it manually. Here's what a skill file looks like:</p>
+
+    <pre><code><span class="cmt"># .claude/commands/balance-table.md</span>
+
+<span class="kw">Create a balance table</span> for the current project's main dataset.
+
+<span class="str">Follow these steps:</span>
+1. Look at the CLAUDE.md to identify the main dataset and key variables
+2. Load the dataset
+3. Create a table comparing treatment vs. control groups for all key variables
+4. Include: mean, SD, and p-value of t-test for each variable
+5. Format with stars: * p&lt;0.10, ** p&lt;0.05, *** p&lt;0.01
+6. Export to output/tables/balance_table.tex and balance_table.xlsx
+7. Report how many observations are in each group
+
+<span class="str">Use the statistical software defined in CLAUDE.md.</span>
+<span class="str">Follow the coding conventions in CLAUDE.md.</span></code></pre>
+
+    <h2 id="research-skills">Research skills examples</h2>
+    <p>Inspired by Scott Cunningham's MixtapeTools and Pedro Sant'Anna's workflow, here are skills that researchers commonly create:</p>
+
+    <div class="tabs">
+      <div class="tab-list">
+        <button class="tab-btn active" data-tab="sk-data">📊 Data skills</button>
+        <button class="tab-btn" data-tab="sk-writing">✍️ Writing skills</button>
+        <button class="tab-btn" data-tab="sk-did">🔬 DiD/RDD skills</button>
+      </div>
+      <div class="tab-panel active" id="sk-data">
+        <h4><code>/data-audit</code> — Audit a dataset for issues</h4>
+        <pre><code>Perform a comprehensive data audit on the main dataset.
+Check for:
+- Missing values (by variable, report % missing)
+- Duplicates (by key identifier)
+- Outliers (values beyond 3 SD from mean for continuous variables)
+- Implausible values (negative ages, incomes above $1M, etc.)
+- Variables with near-zero variance (might be errors)
+Output a formatted report to logs/data_audit.txt</code></pre>
+
+        <h4><code>/summarise-data</code> — Quick data summary</h4>
+        <pre><code>Load the main dataset and produce:
+1. A table with N, mean, SD, min, max for all numeric variables
+2. Frequency tables for all categorical/string variables
+3. A note about any obvious data quality issues
+Print to screen and save to output/tables/data_summary.tex</code></pre>
+      </div>
+      <div class="tab-panel" id="sk-writing">
+        <h4><code>/draft-results</code> — Draft results section</h4>
+        <pre><code>Read the main regression results table (output/tables/main_results.tex)
+and the balance table (output/tables/balance_table.tex).
+Draft a "Results" section for the paper (~600 words).
+Rules:
+- Only state what the numbers actually show
+- Don't make causal claims beyond what's identified
+- Reference tables with \ref{} using the LaTeX labels
+- End with a robustness check subsection header</code></pre>
+
+        <h4><code>/improve-writing</code> — Polish academic prose</h4>
+        <pre><code>Read the file specified after this command.
+Improve the writing by:
+1. Cutting sentences longer than 30 words in half
+2. Replacing passive voice where possible
+3. Removing hedge words (arguably, seemingly, quite)
+4. Making the first sentence of each paragraph the main point
+Show tracked changes (before → after) for every edit.</code></pre>
+      </div>
+      <div class="tab-panel" id="sk-did">
+        <h4><code>/check-parallel-trends</code></h4>
+        <pre><code>Check the parallel trends assumption for my DiD specification.
+1. Load the panel dataset from CLAUDE.md
+2. Create an event study plot showing pre-treatment trends
+3. Run a formal test for pre-trends using the 2 pre-periods
+4. Report: are pre-trends parallel? What does the test say?
+5. Save the event study plot to output/figures/event_study.pdf
+Use the estimator specified in CLAUDE.md (default: fixest::feols)</code></pre>
+      </div>
+    </div>
+
+    <h2 id="sharing-skills" class="anchor-heading">Sharing skills with your team</h2>
+    <p>
+      Because skills are just files in your <code>.claude/commands/</code> folder, they're automatically
+      shared when you share your project via Git. Your whole lab can use the same skills with zero setup.
+    </p>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">🌟</div>
+      <div class="callout-body">
+        <strong>Global skills (available in all projects)</strong>
+        Put skills in <code>~/.claude/commands/</code> (your home folder) to make them available
+        in every project you work on. Great for things like <code>/improve-writing</code> or
+        <code>/data-audit</code> that you want everywhere.
+      </div>
+    </div>
+
+    <div class="exercise" id="exercise">
+      <div class="exercise-header"><span class="ex-icon">🎯</span><h4>Module 6 Exercise: Build your first skill</h4></div>
+      <p class="exercise-task">Create two custom skills for your research workflow:</p>
+      <ol>
+        <li>Create <code>.claude/commands/</code> in one of your project folders.</li>
+        <li>Ask Claude to help you write a skill called <code>summarise-data</code> that generates a summary statistics table for your main dataset.</li>
+        <li>Create a second skill for something you do regularly (e.g., <code>draft-abstract</code>, <code>check-regression</code>, or <code>clean-column-names</code>).</li>
+        <li>Test both skills by typing <code>/summarise-data</code> in a Claude Code session.</li>
+      </ol>
+      <div class="exercise-tools"><span class="tool-tag">Terminal</span><span class="tool-tag">~25 min</span></div>
+    </div>
+
+    <div class="module-nav">
+      <a href="module-05.html">← <span><span class="nav-label">Previous</span> ✍️ Writing &amp; LaTeX</span></a>
+      <button class="complete-btn" id="complete-btn" onclick="markComplete('mod-06')">✓ Mark as complete</button>
+      <a href="module-07.html"><span class="nav-label">Next module</span> 🤖 Hooks →</a>
+    </div>
+  </main>
+</div>
+<footer class="site-footer"><p>Claude Code: From Zero to Mastery · <a href="../index.html">Home</a> · <a href="glossary.html">Glossary</a></p></footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
