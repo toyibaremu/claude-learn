@@ -68,7 +68,7 @@
         <li><a href="#install-mac">Installing on Mac</a></li>
         <li><a href="#install-windows">Installing on Windows</a></li>
         <li><a href="#install-linux">Installing on Linux</a></li>
-        <li><a href="#api-key">Getting your API key</a></li>
+        <li><a href="#api-key">Connecting Claude Code to your account</a></li>
         <li><a href="#cost">Understanding cost</a></li>
         <li><a href="#verify">Verify your installation</a></li>
         <li><a href="#exercise">Exercise</a></li>
@@ -246,11 +246,10 @@ npm install -g @anthropic-ai/claude-code
 claude --version</code></pre>
 
     <!-- API Key -->
-    <h2 id="api-key" class="anchor-heading">Getting your API key</h2>
+    <h2 id="api-key" class="anchor-heading">Connecting Claude Code to your account</h2>
 
     <p>
-      An API key is like a password that lets Claude Code connect to Anthropic's servers on your behalf.
-      How you authenticate depends on whether you already have a Claude subscription.
+      Claude Code needs to connect to Anthropic's servers on your behalf. How you do that depends on whether you already have a Claude subscription.
     </p>
 
     <div class="callout callout-info">
@@ -266,7 +265,7 @@ claude --version</code></pre>
     </div>
 
     <div class="infographic">
-      <h4>How to get your API key</h4>
+      <h4>How to get your authentication key (pay-as-you-go route)</h4>
       <div class="flow-steps">
         <div class="flow-step">
           <div class="step-icon">🌐</div>
@@ -296,7 +295,7 @@ claude --version</code></pre>
       </div>
     </div>
 
-    <p><em>Note: This API key flow is for free/API-plan and Claude Pro users. If you have Claude Max, use <code>claude login</code> instead — you won't see an API key prompt.</em></p>
+    <p><em>Note: This flow is for researchers without a Max plan — either no subscription or Claude Pro. If you have Claude Max, use <code>claude login</code> instead — you won't see a key prompt.</em></p>
 
     <p>When you first run <code>claude</code>, it will ask for your API key. Paste it in and press Enter. Claude Code stores it securely — you only need to do this once.</p>
 
