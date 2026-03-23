@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2: Your First Session | Claude Code Course</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/tooltip.css">
+</head>
+<body data-module="mod-02">
+
+<header class="site-header">
+  <button class="btn-menu" onclick="toggleSidebar()" aria-label="Open menu">☰</button>
+  <div class="logo"><a href="../index.html" style="color:inherit;text-decoration:none"><span>⬡</span> Claude Code <span>Course</span></a></div>
+  <nav class="header-nav">
+    <a href="../index.html">Home</a>
+    <a href="glossary.html">Glossary</a>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-progress">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <div class="progress-text"></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Beginner</div>
+      <a href="module-00.html" class="sidebar-link" data-module="mod-00">🗺️ What is Claude Code?</a>
+      <a href="module-01.html" class="sidebar-link" data-module="mod-01">⚙️ Installation &amp; Setup</a>
+      <a href="module-02.html" class="sidebar-link active" data-module="mod-02">🚀 Your First Session</a>
+      <a href="module-03.html" class="sidebar-link" data-module="mod-03">📋 CLAUDE.md</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Intermediate</div>
+      <a href="module-04.html" class="sidebar-link" data-module="mod-04">🔬 Research Workflows</a>
+      <a href="module-05.html" class="sidebar-link" data-module="mod-05">✍️ Writing &amp; LaTeX</a>
+      <a href="module-06.html" class="sidebar-link" data-module="mod-06">⚡ Slash Commands &amp; Skills</a>
+      <a href="module-07.html" class="sidebar-link" data-module="mod-07">🤖 Hooks</a>
+      <a href="module-08.html" class="sidebar-link" data-module="mod-08">🔌 MCP</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Advanced</div>
+      <a href="module-09.html" class="sidebar-link" data-module="mod-09">🏗️ Multi-file Projects</a>
+      <a href="module-10.html" class="sidebar-link" data-module="mod-10">🛠️ Building Tools</a>
+      <a href="module-11.html" class="sidebar-link" data-module="mod-11">👥 Team Research</a>
+      <a href="module-12.html" class="sidebar-link" data-module="mod-12">🧠 Agents &amp; API</a>
+      <a href="module-13.html" class="sidebar-link" data-module="mod-13">🏆 Mastery &amp; Ethics</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Reference</div>
+      <a href="glossary.html" class="sidebar-link">📖 Jargon Library</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="chip">Module 2 · Beginner · ~25 min</div>
+    <h1 class="page-title" style="margin-top:.75rem">🚀 Your First Session</h1>
+    <p class="page-subtitle">Learn how to have a productive conversation with Claude Code. Understand what makes a good prompt, how to give feedback, and how to get real work done.</p>
+
+    <div class="toc">
+      <h4>In this module</h4>
+      <ol>
+        <li><a href="#anatomy">Anatomy of a Claude Code session</a></li>
+        <li><a href="#first-task">Giving your first real task</a></li>
+        <li><a href="#prompting">Prompting effectively</a></li>
+        <li><a href="#reviewing">Reviewing what Claude does</a></li>
+        <li><a href="#permissions">Permissions: staying in control</a></li>
+        <li><a href="#key-commands">Key commands cheat sheet</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+      </ol>
+    </div>
+
+    <!-- Section 1 -->
+    <h2 id="anatomy" class="anchor-heading">Anatomy of a Claude Code session</h2>
+
+    <p>When you type <code>claude</code> in your terminal and press Enter, here's what happens:</p>
+
+    <div class="infographic">
+      <h4>What Claude Code does when it starts</h4>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="step-icon">📁</div>
+          <div class="step-label">Scans your folder</div>
+          <div class="step-sub">Reads file structure &amp; names</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-icon">📋</div>
+          <div class="step-label">Reads CLAUDE.md</div>
+          <div class="step-sub">If it exists (Module 3)</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-icon">🧠</div>
+          <div class="step-label">Builds context</div>
+          <div class="step-sub">Understands your project</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-icon">💬</div>
+          <div class="step-label">Waits for you</div>
+          <div class="step-sub">Shows the &gt; prompt</div>
+        </div>
+      </div>
+    </div>
+
+    <p>You'll see something like this in your terminal:</p>
+    <pre><code><span class="cmt"># You typed: claude</span>
+
+╭─────────────────────────────────────────╮
+│ ✻ Welcome to Claude Code!               │
+│   Working directory: ~/my-project       │
+│   Type /help for available commands     │
+╰─────────────────────────────────────────╯
+
+<span class="str">></span> </code></pre>
+
+    <p>That <code>&gt;</code> is your prompt — where you type your instructions to Claude.</p>
+
+    <!-- Section 2 -->
+    <h2 id="first-task" class="anchor-heading">Giving your first real task</h2>
+
+    <p>Let's start with something concrete. Navigate to a folder with some data or code in it, start Claude Code, and try these:</p>
+
+    <div class="tabs">
+      <div class="tab-list">
+        <button class="tab-btn active" data-tab="tab-stata">
+          <span class="tab-lang"><span class="lang-dot lang-stata"></span> Stata</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-r">
+          <span class="tab-lang"><span class="lang-dot lang-r"></span> R</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-python">
+          <span class="tab-lang"><span class="lang-dot lang-python"></span> Python</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-general">
+          <span class="tab-lang">📄 General</span>
+        </button>
+      </div>
+
+      <div class="tab-panel active" id="tab-stata">
+        <p>Try typing these at the <code>&gt;</code> prompt:</p>
+        <pre><code><span class="str">></span> Look at my do files and summarise what each one does in one sentence
+
+<span class="str">></span> I have a dataset called hh_survey.dta — write a do file that
+  loads it, creates a table of summary statistics, and exports
+  it to a CSV called summary_stats.csv
+
+<span class="str">></span> This regression in line 45 of analysis.do is giving a
+  "variable not found" error — fix it</code></pre>
+      </div>
+
+      <div class="tab-panel" id="tab-r">
+        <p>Try typing these at the <code>&gt;</code> prompt:</p>
+        <pre><code><span class="str">></span> Look at my R scripts and tell me what packages they use
+
+<span class="str">></span> I have a CSV called survey_data.csv — write an R script that
+  loads it with readr, creates a summary table using skimr,
+  and saves a ggplot histogram of the income variable
+
+<span class="str">></span> My RMarkdown file won't knit — look at the error and fix it</code></pre>
+      </div>
+
+      <div class="tab-panel" id="tab-python">
+        <p>Try typing these at the <code>&gt;</code> prompt:</p>
+        <pre><code><span class="str">></span> What Python files are in this project and what do they do?
+
+<span class="str">></span> I have a CSV called panel_data.csv — write a pandas script
+  that cleans it: fix column names, handle missing values,
+  and create a summary statistics table
+
+<span class="str">></span> There's a KeyError on line 23 of clean_data.py — debug it</code></pre>
+      </div>
+
+      <div class="tab-panel" id="tab-general">
+        <p>These work regardless of your tools:</p>
+        <pre><code><span class="str">></span> What files are in this folder? Summarise what this project seems to be about.
+
+<span class="str">></span> Create a README.md file that explains what this project does,
+  based on the files you see.
+
+<span class="str">></span> Rename all the CSV files in the data/ folder to follow
+  snake_case naming (e.g. "HH Survey Round 1.csv" → "hh_survey_round_1.csv")</code></pre>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <h2 id="prompting" class="anchor-heading">Prompting effectively</h2>
+
+    <p>
+      The quality of Claude's output is directly related to the quality of your instructions.
+      Here's the most important principle:
+    </p>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">🎯</div>
+      <div class="callout-body">
+        <strong>The golden rule: Give context, not just commands</strong>
+        Don't just say what you want. Say <em>why</em> you want it and what <em>constraints</em> apply.
+        Think of it like briefing a very smart but new research assistant who doesn't know your project yet.
+      </div>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card compare-no">
+        <h5>❌ Weak prompts</h5>
+        <ul>
+          <li>"Clean my data"</li>
+          <li>"Fix the code"</li>
+          <li>"Write a regression"</li>
+          <li>"Make this better"</li>
+        </ul>
+      </div>
+      <div class="compare-card compare-yes">
+        <h5>✅ Strong prompts</h5>
+        <ul>
+          <li>"Clean hh_data.csv: standardise the district names to title case, drop rows where income is negative, and flag observations where age is outside 15–80"</li>
+          <li>"The loop in clean.do runs too slowly on large datasets — rewrite it without a loop using Stata's egen or reshape commands"</li>
+          <li>"Run an OLS regression of log income on education years and household size, with robust standard errors, and export the results table to LaTeX"</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>The 4-part prompt formula</h3>
+    <p>For complex tasks, structure your prompt like this:</p>
+
+    <pre><code><span class="cmt">1. CONTEXT: What is this file/project about?</span>
+<span class="cmt">2. TASK: What exactly do you want done?</span>
+<span class="cmt">3. CONSTRAINTS: What rules must be followed? (format, style, tools)</span>
+<span class="cmt">4. OUTPUT: What should the result look like?</span>
+
+<span class="cmt">--- Example ---</span>
+<span class="str">></span> [CONTEXT] I have a Stata do file (analysis.do) that runs
+  regressions for my job market paper on agricultural insurance takeup.
+  [TASK] Rewrite the summary statistics table section (lines 20-55) to
+  also include median and IQR, not just mean and SD.
+  [CONSTRAINTS] Keep the same variable labels. Use Stata's putexcel to
+  export to Excel, not estout.
+  [OUTPUT] Replace lines 20-55 in the file directly.</code></pre>
+
+    <!-- Section 4 -->
+    <h2 id="reviewing" class="anchor-heading">Reviewing what Claude does</h2>
+
+    <p>
+      Claude Code doesn't just answer — it <strong>takes actions</strong> on your files.
+      This is powerful, but it means you need to review what it does. Here's how:
+    </p>
+
+    <ul>
+      <li>
+        <strong>Claude shows you what it will do before doing it.</strong>
+        When Claude plans to edit a file, it shows you the proposed changes (a <em>diff</em> —
+        lines removed in red, lines added in green) and asks for approval.
+      </li>
+      <li>
+        <strong>You can say No.</strong> If Claude proposes something wrong, type "no" or
+        explain what's wrong. Claude will try again.
+      </li>
+      <li>
+        <strong>Use Git to protect yourself.</strong> If your project is a Git repository,
+        every change Claude makes can be undone with <code>git checkout</code>. Module 11 covers this.
+      </li>
+    </ul>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">🔍</div>
+      <div class="callout-body">
+        <strong>Always read the diff</strong>
+        When Claude shows you proposed file changes, actually read them. A few seconds of review
+        can prevent hours of debugging. Trust but verify — especially for statistical code.
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <h2 id="permissions" class="anchor-heading">Permissions: staying in control</h2>
+
+    <p>
+      Claude Code is designed to always ask before taking actions that could be risky.
+      You'll see prompts like:
+    </p>
+
+    <pre><code><span class="cmt">Claude wants to:</span>
+  Edit file: analysis/clean_data.do
+
+<span class="fn">[a]</span> Allow once    <span class="fn">[A]</span> Always allow    <span class="fn">[d]</span> Deny    <span class="fn">[?]</span> Help</code></pre>
+
+    <table class="cmd-table">
+      <thead>
+        <tr><th>Option</th><th>What it means</th><th>When to use it</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>a</code> — Allow once</td>
+          <td>Permit this specific action, ask again next time</td>
+          <td>When you want to stay in control step by step</td>
+        </tr>
+        <tr>
+          <td><code>A</code> — Always allow</td>
+          <td>Permit this type of action for the whole session</td>
+          <td>When you trust Claude with a specific task</td>
+        </tr>
+        <tr>
+          <td><code>d</code> — Deny</td>
+          <td>Block this action</td>
+          <td>When the proposed change looks wrong</td>
+        </tr>
+        <tr>
+          <td><code>Esc</code> — Interrupt</td>
+          <td>Stop Claude mid-task</td>
+          <td>When you realise Claude is going in the wrong direction</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Section 6 -->
+    <h2 id="key-commands" class="anchor-heading">Key commands cheat sheet</h2>
+
+    <p>These are the commands you'll use most in your first sessions:</p>
+
+    <table class="cmd-table">
+      <thead>
+        <tr><th>Command</th><th>What it does</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>/help</code></td><td>Show all available commands</td></tr>
+        <tr><td><code>/clear</code></td><td>Clear the conversation history (frees up context window)</td></tr>
+        <tr><td><code>/exit</code></td><td>Exit Claude Code</td></tr>
+        <tr><td><code>/compact</code></td><td>Summarise the conversation to free up space</td></tr>
+        <tr><td><code>Ctrl+C</code></td><td>Interrupt what Claude is currently doing</td></tr>
+        <tr><td><code>↑ arrow key</code></td><td>Recall your previous message</td></tr>
+        <tr><td>Type normally</td><td>Send a message to Claude</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-info">
+      <div class="callout-icon">📖</div>
+      <div class="callout-body">
+        <strong>What is the context window?</strong>
+        Claude can only "see" a limited amount of text at once — about 200,000 tokens (roughly 150,000 words).
+        This is called the context window. Long conversations or large files eventually fill it up.
+        Use <code>/compact</code> or <code>/clear</code> when your session gets very long.
+        Think of it like Claude's working memory — it can get full.
+      </div>
+    </div>
+
+    <!-- Exercise -->
+    <div class="exercise" id="exercise">
+      <div class="exercise-header">
+        <span class="ex-icon">🎯</span>
+        <h4>Module 2 Exercise: First real task</h4>
+      </div>
+      <p class="exercise-task">
+        Pick a real project folder on your computer (anything with data or code files).
+        Navigate to it in the terminal and start Claude Code.
+      </p>
+      <ol>
+        <li>Ask Claude: <strong>"Describe what this project is about based on the files you can see."</strong></li>
+        <li>Give Claude a real task from your own work — something small but useful. Use the 4-part prompt formula.</li>
+        <li>When Claude proposes a change, read it carefully before approving.</li>
+        <li>After the task is done, ask: <strong>"What could go wrong with what you just did? Are there any edge cases I should check?"</strong></li>
+      </ol>
+      <p>
+        <strong>Pro tip:</strong> That last question — asking Claude to critique its own work — is one of the most
+        powerful habits you can develop. It will catch errors before they become problems.
+      </p>
+      <div class="exercise-tools">
+        <span class="tool-tag">Terminal</span>
+        <span class="tool-tag">Any tool (Stata/R/Python)</span>
+        <span class="tool-tag">~20 min</span>
+      </div>
+    </div>
+
+    <div class="module-nav">
+      <a href="module-01.html">← <span><span class="nav-label">Previous</span> ⚙️ Installation</span></a>
+      <button class="complete-btn" id="complete-btn" onclick="markComplete('mod-02')">✓ Mark as complete</button>
+      <a href="module-03.html"><span class="nav-label">Next module</span> 📋 CLAUDE.md →</a>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">
+  <p>Claude Code: From Zero to Mastery · <a href="../index.html">Home</a> · <a href="glossary.html">Glossary</a></p>
+</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

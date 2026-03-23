@@ -1,0 +1,117 @@
+/* ─── Jargon Tooltip Styles ────────────────────────────────────── */
+.jargon-term {
+  border-bottom: 1px dashed var(--cc-orange);
+  cursor: help;
+  color: inherit;
+  transition: background .15s;
+}
+.jargon-term:hover {
+  background: var(--cc-orange-lt);
+  border-radius: 2px;
+}
+[data-theme="dark"] .jargon-term:hover {
+  background: rgba(217,119,6,.2);
+}
+
+#jargon-tooltip {
+  position: fixed;
+  z-index: 9999;
+  background: #1e293b;
+  color: #e2e8f0;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: .75rem 1rem;
+  max-width: 300px;
+  font-size: .8rem;
+  line-height: 1.55;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .15s, transform .15s;
+}
+#jargon-tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.tt-term {
+  display: block;
+  font-size: .82rem;
+  color: #fcd34d;
+  margin-bottom: .35rem;
+  font-weight: 700;
+}
+.tt-def {
+  margin: 0;
+  color: #cbd5e1;
+}
+
+/* ─── Glossary page styles ─────────────────────────────────────── */
+.glossary-search {
+  width: 100%;
+  padding: .75rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  background: var(--bg-card);
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  transition: border-color .15s;
+}
+.glossary-search:focus {
+  outline: none;
+  border-color: var(--cc-orange);
+}
+.glossary-grid {
+  display: grid;
+  gap: .75rem;
+}
+.glossary-entry {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  transition: border-color .15s;
+}
+.glossary-entry:hover {
+  border-color: var(--cc-orange);
+}
+.glossary-entry dt {
+  font-weight: 700;
+  color: var(--cc-orange);
+  font-size: .95rem;
+  margin-bottom: .25rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.glossary-entry dd {
+  font-size: .88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.glossary-alpha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+  margin-bottom: 1.5rem;
+}
+.alpha-btn {
+  padding: .3rem .6rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--bg-card);
+  color: var(--text-muted);
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: all .15s;
+}
+.alpha-btn:hover, .alpha-btn.active {
+  background: var(--cc-orange);
+  color: white;
+  border-color: var(--cc-orange);
+}
+.hidden { display: none; }

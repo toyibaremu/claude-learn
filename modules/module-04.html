@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 4: Research Workflows | Claude Code Course</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/tooltip.css">
+</head>
+<body data-module="mod-04">
+<header class="site-header">
+  <button class="btn-menu" onclick="toggleSidebar()" aria-label="Open menu">☰</button>
+  <div class="logo"><a href="../index.html" style="color:inherit;text-decoration:none"><span>⬡</span> Claude Code <span>Course</span></a></div>
+  <nav class="header-nav"><a href="../index.html">Home</a><a href="glossary.html">Glossary</a><button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button></nav>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-progress"><div class="progress-bar"><div class="progress-fill"></div></div><div class="progress-text"></div></div>
+    <div class="sidebar-section"><div class="sidebar-label">Beginner</div>
+      <a href="module-00.html" class="sidebar-link" data-module="mod-00">🗺️ What is Claude Code?</a>
+      <a href="module-01.html" class="sidebar-link" data-module="mod-01">⚙️ Installation &amp; Setup</a>
+      <a href="module-02.html" class="sidebar-link" data-module="mod-02">🚀 Your First Session</a>
+      <a href="module-03.html" class="sidebar-link" data-module="mod-03">📋 CLAUDE.md</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Intermediate</div>
+      <a href="module-04.html" class="sidebar-link active" data-module="mod-04">🔬 Research Workflows</a>
+      <a href="module-05.html" class="sidebar-link" data-module="mod-05">✍️ Writing &amp; LaTeX</a>
+      <a href="module-06.html" class="sidebar-link" data-module="mod-06">⚡ Slash Commands &amp; Skills</a>
+      <a href="module-07.html" class="sidebar-link" data-module="mod-07">🤖 Hooks</a>
+      <a href="module-08.html" class="sidebar-link" data-module="mod-08">🔌 MCP</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Advanced</div>
+      <a href="module-09.html" class="sidebar-link" data-module="mod-09">🏗️ Multi-file Projects</a>
+      <a href="module-10.html" class="sidebar-link" data-module="mod-10">🛠️ Building Tools</a>
+      <a href="module-11.html" class="sidebar-link" data-module="mod-11">👥 Team Research</a>
+      <a href="module-12.html" class="sidebar-link" data-module="mod-12">🧠 Agents &amp; API</a>
+      <a href="module-13.html" class="sidebar-link" data-module="mod-13">🏆 Mastery &amp; Ethics</a>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-label">Reference</div>
+      <a href="glossary.html" class="sidebar-link">📖 Jargon Library</a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="chip">Module 4 · Intermediate · ~50 min</div>
+    <h1 class="page-title" style="margin-top:.75rem">🔬 Research Workflows: Data &amp; Analysis</h1>
+    <p class="page-subtitle">The core of the course. Real, practical workflows for cleaning data, running analyses, debugging code, and generating outputs — with Stata, R, and Python examples throughout.</p>
+
+    <div class="toc">
+      <h4>In this module</h4>
+      <ol>
+        <li><a href="#workflow-overview">The research workflow</a></li>
+        <li><a href="#data-cleaning">Data cleaning</a></li>
+        <li><a href="#analysis">Running analysis</a></li>
+        <li><a href="#debugging">Debugging code</a></li>
+        <li><a href="#tables">Generating tables</a></li>
+        <li><a href="#best-practices">Best practices: the verification habit</a></li>
+        <li><a href="#exercise">Exercise: full pipeline</a></li>
+      </ol>
+    </div>
+
+    <!-- Workflow overview -->
+    <h2 id="workflow-overview" class="anchor-heading">The research workflow</h2>
+    <p>A typical quantitative research project moves through these stages, and Claude Code can help at every one:</p>
+    <div class="infographic">
+      <h4>Research pipeline</h4>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="step-icon">📥</div><div class="step-label">Raw Data</div><div class="step-sub">Messy, inconsistent</div></div>
+        <div class="flow-step"><div class="step-icon">🧹</div><div class="step-label">Clean</div><div class="step-sub">Fix, merge, reshape</div></div>
+        <div class="flow-step"><div class="step-icon">📊</div><div class="step-label">Analyse</div><div class="step-sub">Regressions, tests</div></div>
+        <div class="flow-step"><div class="step-icon">📋</div><div class="step-label">Output</div><div class="step-sub">Tables, figures</div></div>
+        <div class="flow-step"><div class="step-icon">✍️</div><div class="step-label">Write</div><div class="step-sub">Paper, memo</div></div>
+      </div>
+    </div>
+
+    <!-- Data cleaning -->
+    <h2 id="data-cleaning" class="anchor-heading">Data cleaning</h2>
+    <p>Data cleaning is where researchers spend the most time — and where Claude Code shines. Here are the most common tasks and how to prompt for them:</p>
+
+    <div class="tabs">
+      <div class="tab-list">
+        <button class="tab-btn active" data-tab="clean-stata"><span class="tab-lang"><span class="lang-dot lang-stata"></span> Stata</span></button>
+        <button class="tab-btn" data-tab="clean-r"><span class="tab-lang"><span class="lang-dot lang-r"></span> R</span></button>
+        <button class="tab-btn" data-tab="clean-python"><span class="tab-lang"><span class="lang-dot lang-python"></span> Python</span></button>
+      </div>
+
+      <div class="tab-panel active" id="clean-stata">
+        <h4>Merging datasets</h4>
+        <pre><code><span class="str">></span> I have two datasets: hh_baseline.dta (household baseline survey)
+  and hh_followup.dta (same households 2 years later). Both have
+  hh_id as the household identifier. Merge them into
+  hh_panel.dta and:
+  - Flag households in baseline but not follow-up (attrition)
+  - Flag households in follow-up but not baseline (new entrants)
+  - Create an "attrition" dummy variable
+  Save the merge report to logs/merge_report.txt</code></pre>
+
+        <h4>Fixing inconsistent data</h4>
+        <pre><code><span class="str">></span> In hh_survey.dta, the district variable has inconsistent spelling:
+  "Addis Ababa", "addis ababa", "A. Ababa", "Addis-Ababa".
+  Standardise all variations to "Addis Ababa" (title case, no hyphens).
+  Show me all unique district names before and after so I can verify.</code></pre>
+
+        <h4>Handling outliers</h4>
+        <pre><code><span class="str">></span> In the income variable (inc_monthly_usd), some values look implausibly
+  high (above 50,000) and some are negative. Don't delete them —
+  instead, create:
+  - A flag variable "inc_outlier" = 1 for these observations
+  - A winsorized version "inc_wins" capped at the 99th percentile
+  Summarise both original and winsorized versions so I can compare.</code></pre>
+      </div>
+
+      <div class="tab-panel" id="clean-r">
+        <h4>Merging datasets</h4>
+        <pre><code><span class="str">></span> I have two tibbles: baseline_df (loaded from baseline.csv) and
+  followup_df (from followup.csv). Both have hh_id as the key.
+  Write an R script that:
+  - Joins them with dplyr::full_join
+  - Creates attrition and new_entrant indicator columns
+  - Prints a summary of the merge quality
+  - Saves the result to data/clean/panel_data.rds</code></pre>
+
+        <h4>Fixing messy column names</h4>
+        <pre><code><span class="str">></span> Load survey_data.csv. The column names are a mess:
+  "Household ID", "Monthly Income (USD)", "# of Children", etc.
+  Use janitor::clean_names() to fix them, then show me the
+  before/after comparison, and save to data/clean/survey_clean.rds</code></pre>
+
+        <h4>Missing value analysis</h4>
+        <pre><code><span class="str">></span> For my panel dataset, create a missing value report:
+  - Which variables have more than 10% missing?
+  - Is missingness random or correlated with treatment status?
+  - Create a visualisation using naniar::vis_miss()
+  Save the report as output/missing_report.html</code></pre>
+      </div>
+
+      <div class="tab-panel" id="clean-python">
+        <h4>Merging datasets</h4>
+        <pre><code><span class="str">></span> I have baseline.csv and endline.csv. Both have 'hh_id' as the key.
+  Write a pandas script that:
+  - Merges them with indicator='_merge'
+  - Creates attrition and new_entrant columns
+  - Prints a merge quality report (N matched, N left-only, N right-only)
+  - Saves to data/clean/panel.parquet</code></pre>
+
+        <h4>Standardising categories</h4>
+        <pre><code><span class="str">></span> The 'occupation' column in survey.csv has many variants of the same
+  category: "farmer", "Farmer", "FARMER", "small farmer", "farm worker".
+  Create a mapping dictionary and standardise to 5 clean categories.
+  Show the before/after distribution with value_counts().</code></pre>
+      </div>
+    </div>
+
+    <!-- Analysis -->
+    <h2 id="analysis" class="anchor-heading">Running analysis</h2>
+
+    <div class="callout callout-warn">
+      <div class="callout-icon">🧠</div>
+      <div class="callout-body">
+        <strong>Your job: the identification strategy. Claude's job: the implementation.</strong>
+        You decide whether an instrumental variables approach is valid. You decide whether
+        the parallel trends assumption holds. Claude implements the estimator you choose.
+        Never let Claude choose your empirical strategy.
+      </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab-list">
+        <button class="tab-btn active" data-tab="reg-stata"><span class="tab-lang"><span class="lang-dot lang-stata"></span> Stata</span></button>
+        <button class="tab-btn" data-tab="reg-r"><span class="tab-lang"><span class="lang-dot lang-r"></span> R</span></button>
+        <button class="tab-btn" data-tab="reg-python"><span class="tab-lang"><span class="lang-dot lang-python"></span> Python</span></button>
+      </div>
+
+      <div class="tab-panel active" id="reg-stata">
+        <pre><code><span class="str">></span> Run my main specification:
+  OLS regression of log(fert_kg_ha + 1) on insurance_take,
+  controlling for: hh_size, land_ha, age_head, educ_head.
+  Include village fixed effects and cluster standard errors at village level.
+  Use reghdfe. Store estimates as "main_ols".
+  Then run the same specification but instrument insurance_take
+  with rainfall_sd using ivreg2. Store as "main_iv".
+  Export both to a single LaTeX table using estout.</code></pre>
+      </div>
+
+      <div class="tab-panel" id="reg-r">
+        <pre><code><span class="str">></span> Using my panel_data.rds, run the following:
+  1. OLS with fixest::feols: log(fert + 0.01) ~ insurance | village_id,
+     clustering by village_id. Store as mod1.
+  2. IV with fixest::feiv: same outcome, instrument insurance with rainfall_sd,
+     same FE and clustering. Store as mod2.
+  3. Export both models to a LaTeX table using modelsummary.
+     Include N, R2, FE indicator, and cluster info in the footer.</code></pre>
+      </div>
+
+      <div class="tab-panel" id="reg-python">
+        <pre><code><span class="str">></span> Using panel.parquet, run with linearmodels:
+  1. Pooled OLS: log(fert+0.01) ~ insurance + hh_size + land_ha
+     with entity fixed effects (PanelOLS), clustering by village_id
+  2. IV equivalent using IV2SLS, instrument insurance with rainfall_sd
+  Print results and export to output/tables/main_results.tex (LaTeX format)</code></pre>
+      </div>
+    </div>
+
+    <!-- Debugging -->
+    <h2 id="debugging" class="anchor-heading">Debugging code</h2>
+    <p>One of Claude Code's most valuable skills is debugging. When something breaks:</p>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">🐛</div>
+      <div class="callout-body">
+        <strong>The best debugging prompt</strong>
+        Don't just paste the error. Give Claude:
+        (1) the error message, (2) the code that produced it, (3) what you expected it to do.
+        Claude will diagnose and fix it much faster with all three pieces.
+      </div>
+    </div>
+
+    <pre><code><span class="str">></span> I'm getting this error in analysis.do at line 47:
+  "variable rainfall_sd not found"
+
+  Here's the relevant code (lines 40–55):
+  [paste your code]
+
+  What I expect: rainfall_sd should be in the merged dataset.
+  The merge was done in clean_data.do. Can you figure out what went wrong?</code></pre>
+
+    <h3>Common debugging requests</h3>
+    <ul>
+      <li>"Why is this loop so slow? Can you make it faster without changing the output?"</li>
+      <li>"This regression is giving different results than what I got last month. What changed?"</li>
+      <li>"My do file runs fine on my computer but crashes on my co-author's. Help diagnose."</li>
+      <li>"The merge is dropping 20% of observations unexpectedly. Help me find why."</li>
+    </ul>
+
+    <!-- Tables -->
+    <h2 id="tables" class="anchor-heading">Generating tables</h2>
+
+    <div class="tabs">
+      <div class="tab-list">
+        <button class="tab-btn active" data-tab="tab-stata2"><span class="tab-lang"><span class="lang-dot lang-stata"></span> Stata</span></button>
+        <button class="tab-btn" data-tab="tab-r2"><span class="tab-lang"><span class="lang-dot lang-r"></span> R</span></button>
+      </div>
+
+      <div class="tab-panel active" id="tab-stata2">
+        <pre><code><span class="str">></span> Create a summary statistics table comparing treatment vs. control groups.
+  Variables: age_head, educ_head, hh_size, land_ha, inc_monthly_usd,
+             fert_kg_ha (baseline), dist_market_km
+  For each variable show: mean and SD for control, mean and SD for treatment,
+  and the p-value of a t-test for difference.
+  Add stars: * p&lt;0.10, ** p&lt;0.05, *** p&lt;0.01
+  Export to output/tables/balance_table.tex (estout format)
+  And output/tables/balance_table.xlsx (for sharing with co-authors)</code></pre>
+      </div>
+
+      <div class="tab-panel" id="tab-r2">
+        <pre><code><span class="str">></span> Create a balance table from panel_data.rds.
+  Use modelsummary::datasummary_balance() with the insurance_take variable.
+  Variables: age_head, educ_head, hh_size, land_ha, inc_monthly_usd,
+             fert_kg_ha_baseline
+  Export to: output/tables/balance.tex and output/tables/balance.html
+  The LaTeX version should have a caption and label for the paper.</code></pre>
+      </div>
+    </div>
+
+    <!-- Best practices -->
+    <h2 id="best-practices" class="anchor-heading">Best practices: the verification habit</h2>
+
+    <p>
+      The most important habit when using Claude Code for analysis is <strong>always asking Claude to verify its own work</strong>.
+      After every significant task:
+    </p>
+
+    <pre><code><span class="str">></span> You just cleaned the dataset. Before I use it, please:
+  1. Check that no observations were unexpectedly dropped
+     (compare N before and after)
+  2. Verify the key identifier (hh_id) is unique with no duplicates
+  3. Check for any variables that are now all-missing
+  4. Make sure the treatment variable still has the same distribution
+     as the raw data
+  Tell me if anything looks wrong.</code></pre>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">✅</div>
+      <div class="callout-body">
+        <strong>The "sanity check" prompt</strong>
+        After any data operation, ask: <em>"Before I proceed, what could have gone wrong with what you just did?
+        Are there edge cases that might have been handled incorrectly?"</em>
+        This catches 80% of errors before they compound.
+      </div>
+    </div>
+
+    <!-- Exercise -->
+    <div class="exercise" id="exercise">
+      <div class="exercise-header">
+        <span class="ex-icon">🎯</span>
+        <h4>Module 4 Exercise: Full pipeline</h4>
+      </div>
+      <p class="exercise-task">
+        Use Claude Code to run a mini-analysis pipeline on a real or toy dataset. Here's a concrete task:
+      </p>
+      <p>
+        Download the <a href="https://vincentarelbundock.github.io/Rdatasets/csv/AER/PSID1982.csv" target="_blank" rel="noopener">PSID wage dataset</a>
+        (a classic labour economics dataset) or use your own data. Then ask Claude to:
+      </p>
+      <ol>
+        <li>Load the data and create a summary statistics table</li>
+        <li>Regress log wages on education, experience, and experience-squared — with robust standard errors</li>
+        <li>Produce a coefficient plot showing the education return</li>
+        <li>Export the regression table to LaTeX</li>
+        <li>Write a 2-paragraph description of the results suitable for a paper</li>
+      </ol>
+      <p>After each step, verify the outputs look correct before moving to the next.</p>
+      <div class="exercise-tools">
+        <span class="tool-tag">Stata or R or Python</span>
+        <span class="tool-tag">~35 min</span>
+      </div>
+    </div>
+
+    <div class="module-nav">
+      <a href="module-03.html">← <span><span class="nav-label">Previous</span> 📋 CLAUDE.md</span></a>
+      <button class="complete-btn" id="complete-btn" onclick="markComplete('mod-04')">✓ Mark as complete</button>
+      <a href="module-05.html"><span class="nav-label">Next module</span> ✍️ Writing &amp; LaTeX →</a>
+    </div>
+  </main>
+</div>
+<footer class="site-footer"><p>Claude Code: From Zero to Mastery · <a href="../index.html">Home</a> · <a href="glossary.html">Glossary</a></p></footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
