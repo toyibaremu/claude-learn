@@ -160,8 +160,8 @@ This course draws from the work of many researchers and developers. See the full
 ## How to Cite
 
 ```bibtex
-@misc{ibaremu2026claudelearn,
-  author       = {Ibaremu, Toyib},
+@misc{aremu2026claudelearn,
+  author       = {Aremu, Toyib},
   title        = {Claude Code: From Zero to Mastery},
   year         = {2026},
   publisher    = {GitHub},
@@ -191,7 +191,7 @@ Please [open an issue](https://github.com/toyibaremu/claude-learn/issues) or sub
 MIT License — free to use, adapt, and redistribute with attribution.
 
 Built with [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) by Anthropic.
-Course author: Toyib Ibaremu ([@toyibaremu](https://orcid.org/0000-0003-1448-4942))
+Course author: Toyib Aremu ([@toyibaremu](https://orcid.org/0000-0003-1448-4942))
 
 ---
 

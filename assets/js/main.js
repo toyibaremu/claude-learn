@@ -24,7 +24,7 @@ function toggleSidebar() {
 }
 
 /* ─── Progress Tracking ────────────────────────────────────────── */
-const TOTAL_MODULES = 13;
+const TOTAL_MODULES = 14;
 
 function getProgress() {
   const raw = localStorage.getItem('cc-progress');
