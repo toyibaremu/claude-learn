@@ -250,8 +250,20 @@ claude --version</code></pre>
 
     <p>
       An API key is like a password that lets Claude Code connect to Anthropic's servers on your behalf.
-      You need one to use the terminal version of Claude Code.
+      How you authenticate depends on whether you already have a Claude subscription.
     </p>
+
+    <div class="callout callout-info">
+      <div class="callout-icon">💳</div>
+      <div class="callout-body">
+        <strong>Already have a Claude subscription? Check which path applies to you:</strong>
+        <ul style="margin:.5rem 0 0;padding-left:1.2rem">
+          <li><strong>Claude Max plan ($100/mo)</strong> — Terminal Claude Code is <em>included</em> in your plan. Run <code>claude login</code> in your terminal to authenticate with your existing account via your browser. No API key, no extra billing. <a href="#cost">Skip to the cost section →</a></li>
+          <li><strong>Claude Pro or Team plan ($20–25/mo)</strong> — Your subscription covers the <em>web version</em> only. Terminal Claude Code bills separately via the API. Continue below to set up an API key.</li>
+          <li><strong>No subscription yet</strong> — Continue below. You'll create a free Anthropic account and add a small credit balance.</li>
+        </ul>
+      </div>
+    </div>
 
     <div class="infographic">
       <h4>How to get your API key</h4>
@@ -284,6 +296,8 @@ claude --version</code></pre>
       </div>
     </div>
 
+    <p><em>Note: This API key flow is for free/API-plan and Claude Pro users. If you have Claude Max, use <code>claude login</code> instead — you won't see an API key prompt.</em></p>
+
     <p>When you first run <code>claude</code>, it will ask for your API key. Paste it in and press Enter. Claude Code stores it securely — you only need to do this once.</p>
 
     <div class="callout callout-danger">
@@ -301,25 +315,36 @@ claude --version</code></pre>
 
     <p>
       Claude Code charges per use, measured in <strong>tokens</strong> (roughly ¾ of a word).
-      You pay for what you use, like a prepaid phone plan.
+      You pay for what you use, like a prepaid phone plan. Your exact cost depends on which plan you're on.
     </p>
 
     <table class="cmd-table">
       <thead>
-        <tr><th>Usage pattern</th><th>Estimated monthly cost</th></tr>
+        <tr><th>Plan / usage pattern</th><th>Terminal Claude Code cost</th></tr>
       </thead>
       <tbody>
-        <tr><td>Light use (a few sessions/week)</td><td>$3–10</td></tr>
-        <tr><td>Regular use (daily, moderate sessions)</td><td>$10–40</td></tr>
-        <tr><td>Heavy use (all-day coding assistant)</td><td>$40–100+</td></tr>
-        <tr><td>Claude Code Max subscription</td><td>$100/month flat</td></tr>
+        <tr><td>No subscription — light use (a few sessions/week)</td><td>~$3–10/mo via API</td></tr>
+        <tr><td>No subscription — regular use (daily, moderate)</td><td>~$10–40/mo via API</td></tr>
+        <tr><td>No subscription — heavy use (all-day coding)</td><td>~$40–100+/mo via API</td></tr>
+        <tr><td>Claude Pro ($20/mo) — <em>web version only</em></td><td>+ separate API credits for terminal</td></tr>
+        <tr><td>Claude Max ($100/mo)</td><td><strong>Included — no extra API charges</strong></td></tr>
       </tbody>
     </table>
+
+    <div class="callout callout-warn">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body">
+        <strong>Pro plan ≠ free terminal access</strong>
+        A Claude Pro subscription ($20/month) covers the web interface at claude.ai — it does <em>not</em>
+        include terminal Claude Code. If you use the terminal on a Pro plan, API usage is billed separately
+        on top of your subscription. Only the <strong>Max plan</strong> bundles terminal Claude Code at a flat rate.
+      </div>
+    </div>
 
     <div class="callout callout-tip">
       <div class="callout-icon">💰</div>
       <div class="callout-body">
-        <strong>Tip for staying within budget</strong>
+        <strong>Tip for staying within budget (API users)</strong>
         Set a spending limit at console.anthropic.com → "Billing" → "Usage limits".
         Start with $10 and increase as you learn. Most researchers find $15–30/month covers daily use comfortably.
       </div>
@@ -366,7 +391,7 @@ claude
       <p class="exercise-task">Complete all three steps:</p>
       <ol>
         <li>Install Claude Code using the instructions for your operating system above.</li>
-        <li>Get your API key from console.anthropic.com and connect it.</li>
+        <li>Connect your account: if you have <strong>Claude Max</strong>, run <code>claude login</code> and authenticate via your browser. Otherwise, get your API key from console.anthropic.com and paste it when prompted.</li>
         <li>Navigate to a folder on your computer (it can be any folder — your Desktop, or a project folder), start Claude Code, and ask it: <strong>"What files are in this folder and what do you think they're for?"</strong></li>
       </ol>
       <p>You've succeeded when Claude Code describes your files back to you. Congratulations — you have a working Claude Code setup!</p>
