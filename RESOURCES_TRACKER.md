@@ -102,7 +102,21 @@ If PDF files are added in the future, place them in `resources/pdfs/` and list t
 
 | File | Source | Date Added |
 |---|---|---|
-| *(none yet)* | | |
+| Claude Code 15_ The Results Are In_ Can LLMs Replicate a PNAS Paper_ (Part 2).pdf | Scott Cunningham (Causal Inference substack) | 2026-05-20 |
+| Claude Code 16_ The Memory Foam Mattress Theory of Claude Code.pdf | Scott Cunningham | 2026-05-20 |
+| Claude Code 17_ The Zero Profit Condition Is Coming.pdf | Scott Cunningham | 2026-05-20 |
+| Claude Code 18_ When the Reclassification Is Massive But the Trends Don't Change, Something Interesting Is Happening.pdf | Scott Cunningham | 2026-05-20 |
+| Claude Code 19_ When the Reclassification Is Massive But the Trends Don't Change, Something Interesting Is Happening (Part 3).pdf | Scott Cunningham | 2026-05-20 |
+| Claude Code 21_ Attention, Human Verification and Congestion....pdf | Scott Cunningham | 2026-05-20 |
+| Claude Code 21_ Faculty Adoption of AI, Decks and Folders, and Security Risks.pdf | Scott Cunningham | 2026-05-20 |
+| Claude Code 22_ Final Entry Into Classification of Speeches....pdf | Scott Cunningham | 2026-05-20 |
+| Claude Code 23_ W. Edward Deming and The Zero Error Philosophy For Your Workflow.pdf | Scott Cunningham | 2026-05-20 |
+| Claude Code 25_ More Autonomous Agents Are Coming to Research.pdf | Scott Cunningham | 2026-05-20 |
+| Claude Code 26_ Multiple Agents Auditing Your Callaway and Sant'Anna Diff-in-Diff (Part 2).pdf | Scott Cunningham | 2026-05-20 |
+| Claude Code 27_ Research and Publishing Are Now Two Different Things.pdf | Scott Cunningham | 2026-05-20 |
+| Claude Code 28_ Multiple Agents Auditing Your Callaway and Sant'Anna Diff-in-Diff (Part 3).pdf | Scott Cunningham | 2026-05-20 |
+| Claude Code 29_ Can Claude Code Find Facts_ And If So, Should I Believe Them_.pdf | Scott Cunningham | 2026-05-20 |
+| Claude Code 31_ Apple-to-Apple Audit of Six Callaway and Sant'Anna packages.pdf | Scott Cunningham | 2026-05-20 |
 
 ---
 
