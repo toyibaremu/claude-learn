@@ -54,6 +54,16 @@
         Academic research depends on proper attribution. This page lists every source that
         informed the design, content, and examples in this course. If you build on this work,
         please maintain these attributions and add your own.
+        <br><small style="color:var(--text-muted);margin-top:.5rem;display:block">Resources are stored in <code>data/resources.js</code> and rendered dynamically — add a new entry there to have it appear automatically in the "Recently Added" section below.</small>
+      </div>
+    </div>
+
+    <!-- Dynamically rendered "Recently Added" section -->
+    <div class="credit-section">
+      <h2>🆕 Recently Added <span id="whats-new-date" style="font-size:.8rem;font-weight:400;color:var(--text-muted)"></span></h2>
+      <p style="color:var(--text-muted);font-size:.875rem">The five most recently added resources, sorted by date. New entries in <code>data/resources.js</code> automatically appear here.</p>
+      <div class="credit-grid" id="whats-new-grid">
+        <!-- Rendered by resources.js + inline script below -->
       </div>
     </div>
 
@@ -194,6 +204,76 @@
           <a href="https://github.com/ChrisWiles/claude-code-showcase" target="_blank" rel="noopener">github.com/ChrisWiles/claude-code-showcase ↗</a>
           <div class="how-used">Used in: Multiple modules</div>
         </div>
+        <div class="credit-card">
+          <div class="credit-type">GitHub Repository</div>
+          <div class="credit-name">Claes Bäckman — AI Research Feedback Skills</div>
+          <div class="credit-desc">Five Claude Code skills for pre-submission paper review: <code>review-paper</code> (full referee report via 6 parallel agents), <code>review-paper-light</code>, <code>review-paper-code</code> (reproducibility), <code>review-pap</code>, and <code>review-grant</code>. Each auto-detects files and outputs structured reports.</div>
+          <a href="https://github.com/claesbackman/AI-research-feedback" target="_blank" rel="noopener">github.com/claesbackman/AI-research-feedback ↗</a>
+          <div class="how-used">Used in: Module 6</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">GitHub Repository</div>
+          <div class="credit-name">dariia-m — My Claude Skills</div>
+          <div class="credit-desc">Personal collection of research-oriented Claude Code skills: abstract drafting, academic writing, event-studies, paper verification, and more. Good example of a researcher's custom skill library.</div>
+          <a href="https://github.com/dariia-m/my_claude_skills" target="_blank" rel="noopener">github.com/dariia-m/my_claude_skills ↗</a>
+          <div class="how-used">Used in: Module 6</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">GitHub Repository</div>
+          <div class="credit-name">batikas — Results DB Skill</div>
+          <div class="credit-desc">Claude skill that functions as a structured results ledger. Logs regression estimates with metadata, supports LaTeX/CSV export, and runs integrity checks before paper submission. Ideal for multi-spec empirical projects.</div>
+          <a href="https://github.com/batikas/results-db-skill" target="_blank" rel="noopener">github.com/batikas/results-db-skill ↗</a>
+          <div class="how-used">Used in: Module 6</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">GitHub Repository</div>
+          <div class="credit-name">Claes Bäckman — AI Workshop Slides</div>
+          <div class="credit-desc">Slide deck for "Practical AI for academics" — covers AI tools and workflows for academic researchers. Useful for teaching or workshop contexts alongside this course.</div>
+          <a href="https://github.com/claesbackman/AI_Workshop_Slides" target="_blank" rel="noopener">github.com/claesbackman/AI_Workshop_Slides ↗</a>
+          <div class="how-used">Used in: Resources</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Open-Source Agent</div>
+          <div class="credit-name">companion-inc — Feynman</div>
+          <div class="credit-desc">Open-source AI research agent (7k+ stars) with four built-in sub-agents: Researcher, Reviewer, Writer, Verifier. Supports literature review, multi-agent investigation, experiment replication, and peer review simulation. Integrates with Claude.</div>
+          <a href="https://github.com/companion-inc/feynman" target="_blank" rel="noopener">github.com/companion-inc/feynman ↗</a>
+          <div class="how-used">Used in: Module 12</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">GitHub Repository</div>
+          <div class="credit-name">Ingar30 — Reviewer</div>
+          <div class="credit-desc">Reproducible multi-agent reviewer for academic economics papers. Parses PDFs, runs parallel specialized reviewers (numerical accuracy, methodology, claim–evidence alignment), and synthesises structured reports.</div>
+          <a href="https://github.com/Ingar30/reviewer" target="_blank" rel="noopener">github.com/Ingar30/reviewer ↗</a>
+          <div class="how-used">Used in: Resources</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">GitHub Repository</div>
+          <div class="credit-name">alejandroll10 — Idea Evaluation Pipeline</div>
+          <div class="credit-desc">Prompt-based 8-step pipeline for evaluating PhD-level research ideas in finance and economics. No code required — works with any AI. Rates ideas 1–10 and iterates toward top-3 journal quality.</div>
+          <a href="https://github.com/alejandroll10/idea-evaluation-pipeline" target="_blank" rel="noopener">github.com/alejandroll10/idea-evaluation-pipeline ↗</a>
+          <div class="how-used">Used in: Module 4</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lecture series -->
+    <div class="credit-section">
+      <h2>Courses &amp; Lecture Series</h2>
+      <div class="credit-grid">
+        <div class="credit-card">
+          <div class="credit-type">Lecture Series</div>
+          <div class="credit-name">Paul Goldsmith-Pinkham — Mini-Series on Claude Code (Princeton BCF)</div>
+          <div class="credit-desc">Video lecture mini-series by Yale economist Paul Goldsmith-Pinkham on Claude Code for applied economists, hosted by the Princeton Bendheim Center for Finance.</div>
+          <a href="https://bcf.princeton.edu/events/paul-goldsmith-pinkham-mini-series-on-claude-code-for-applied-economists/" target="_blank" rel="noopener">bcf.princeton.edu ↗</a>
+          <div class="how-used">Listed: Resources</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Course</div>
+          <div class="credit-name">DeepLearning.AI — Build Interactive Agents with Generative UI</div>
+          <div class="credit-desc">Free short course on building agentic applications with generative UI. Excellent complement to Module 12 for learners who want to build their own agent-powered research tools.</div>
+          <a href="https://www.deeplearning.ai/courses/build-interactive-agents-with-generative-ui" target="_blank" rel="noopener">deeplearning.ai ↗</a>
+          <div class="how-used">Used in: Module 12</div>
+        </div>
       </div>
     </div>
 
@@ -235,6 +315,27 @@
           <div class="credit-desc">Applied Policy and Economics Lab demonstrating AI integration in development research and policy analysis workflows.</div>
           <a href="https://ape.socialcatalystlab.org/" target="_blank" rel="noopener">ape.socialcatalystlab.org ↗</a>
           <div class="how-used">Used in: Module 4, Module 13</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Wiki / Community</div>
+          <div class="credit-name">Mihail Velikov — AI Econ Wiki</div>
+          <div class="credit-desc">Community-maintained wiki of AI tools, workflows, and resources for economists. A living reference that is regularly updated as new tools emerge.</div>
+          <a href="https://velikov-mihail.github.io/ai-econ-wiki/" target="_blank" rel="noopener">velikov-mihail.github.io/ai-econ-wiki ↗</a>
+          <div class="how-used">Listed: Resources</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Reference Guide</div>
+          <div class="credit-name">Paul Goldsmith-Pinkham — Style Guide</div>
+          <div class="credit-desc">Academic writing and AI style guide by Yale economist Paul Goldsmith-Pinkham. A concise reference for maintaining quality and clarity when working with AI on economic research.</div>
+          <a href="https://paulgp.com/style_guide.md" target="_blank" rel="noopener">paulgp.com/style_guide.md ↗</a>
+          <div class="how-used">Used in: Module 5</div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-type">Website / Tool</div>
+          <div class="credit-name">OBIN Lab — Citation Hallucination Checker</div>
+          <div class="credit-desc">Tool and guide for verifying that AI-generated citations are real and accurate. Critical companion for the academic integrity section of Module 5 — never submit AI-generated citations without independent verification.</div>
+          <a href="https://sites.google.com/site/obintlab/wiki/useful-resources/citation-hallucination-checker" target="_blank" rel="noopener">OBIN Lab ↗</a>
+          <div class="how-used">Used in: Module 5</div>
         </div>
       </div>
     </div>
@@ -291,5 +392,33 @@ GitHub. https://github.com/toyibaremu/claude-learn
 </div>
 <footer class="site-footer"><p>Claude Code: From Zero to Mastery · <a href="../index.html">Home</a> · <a href="glossary.html">Glossary</a> · MIT License</p></footer>
 <script src="../assets/js/main.js"></script>
+<script src="../data/resources.js"></script>
+<script>
+(function() {
+  const grid = document.getElementById('whats-new-grid');
+  const dateEl = document.getElementById('whats-new-date');
+  if (!grid || typeof COURSE_RESOURCES === 'undefined') return;
+
+  const sorted = [...COURSE_RESOURCES].sort((a, b) => b.dateAdded.localeCompare(a.dateAdded));
+  const recent = sorted.slice(0, 5);
+  const latestDate = sorted[0] && sorted[0].dateAdded;
+  if (latestDate && dateEl) {
+    const d = new Date(latestDate);
+    dateEl.textContent = '— last updated ' + d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  recent.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'credit-card';
+    card.innerHTML = `
+      <div class="credit-type">${r.type}</div>
+      <div class="credit-name">${r.name}</div>
+      <div class="credit-desc">${r.desc}</div>
+      <a href="${r.url}" target="_blank" rel="noopener">${r.url.replace(/^https?:\/\//, '').split('/').slice(0,2).join('/') + ' ↗'}</a>
+      <div class="how-used">Added: ${r.dateAdded}${r.usedIn ? ' · ' + r.usedIn : ''}</div>`;
+    grid.appendChild(card);
+  });
+})();
+</script>
 </body>
 </html>

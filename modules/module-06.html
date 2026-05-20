@@ -50,6 +50,7 @@
         <li><a href="#what-are-skills">What are skills?</a></li>
         <li><a href="#creating-skills">Creating your own skills</a></li>
         <li><a href="#research-skills">Research skills examples</a></li>
+        <li><a href="#community-skills">Community skill libraries</a></li>
         <li><a href="#sharing-skills">Sharing skills with your team</a></li>
         <li><a href="#exercise">Exercise</a></li>
       </ol>
@@ -194,6 +195,81 @@ Show tracked changes (before → after) for every edit.</code></pre>
 Use the estimator specified in CLAUDE.md (default: fixest::feols)</code></pre>
       </div>
     </div>
+
+    <h2 id="community-skills" class="anchor-heading">Community skill libraries</h2>
+    <p>Researchers have published their skill collections on GitHub — a fast way to bootstrap your own library without starting from scratch.</p>
+
+    <div class="callout callout-info">
+      <div class="callout-icon">🔗</div>
+      <div class="callout-body">
+        <strong>Explore, then adapt</strong>
+        The skills below are starting points, not recipes. Read each one, understand what it does,
+        then customise it to your data, software, and project conventions.
+      </div>
+    </div>
+
+    <table class="cmd-table">
+      <thead><tr><th>Repo</th><th>Skills available</th><th>Best for</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://github.com/scunning1975/MixtapeTools/tree/main/skills" target="_blank" rel="noopener">MixtapeTools</a></td>
+          <td>DiD event studies, RDD, IV, parallel trends</td>
+          <td>Causal inference / applied micro</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/dariia-m/my_claude_skills" target="_blank" rel="noopener">dariia-m/my_claude_skills</a></td>
+          <td>abstract, academic_writing, event-studies, paper_verification, econ_intro_writing</td>
+          <td>Paper writing &amp; verification</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/claesbackman/AI-research-feedback" target="_blank" rel="noopener">AI-research-feedback</a></td>
+          <td>review-paper, review-paper-light, review-paper-code, review-pap, review-grant</td>
+          <td>Pre-submission self-review</td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/batikas/results-db-skill" target="_blank" rel="noopener">results-db-skill</a></td>
+          <td>results-db (structured ledger of all regression estimates)</td>
+          <td>Managing many specifications</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Spotlight: <code>/review-paper</code></h3>
+    <p>The <code>review-paper</code> skill from Claes Bäckman's <a href="https://github.com/claesbackman/AI-research-feedback" target="_blank" rel="noopener">AI-research-feedback</a> repo shows what a production-quality skill looks like — it orchestrates six parallel sub-agents, each checking a different dimension:</p>
+    <pre><code><span class="cmt"># .claude/commands/review-paper.md (excerpt from claesbackman/AI-research-feedback)</span>
+
+Run a rigorous pre-submission review of the paper in this project.
+Use six parallel review agents:
+
+Agent 1: Spelling and grammar (every sentence)
+Agent 2: Internal consistency (tables, figures, text all agree)
+Agent 3: Unsupported claims (every factual assertion has a citation or comes from the data)
+Agent 4: Mathematics and statistics (check all formulas and reported numbers)
+Agent 5: Figures and tables (axis labels, sample sizes, notes)
+Agent 6: Contribution quality (is the paper's claim of novelty accurate?)
+
+Synthesise findings into a structured report with severity levels (critical / major / minor).
+Save the report to output/review_report.md</code></pre>
+
+    <h3>Spotlight: <code>/results-db</code></h3>
+    <p>The <a href="https://github.com/batikas/results-db-skill" target="_blank" rel="noopener">results-db-skill</a> solves a common problem: keeping track of dozens of regression specifications across multiple paper drafts.</p>
+    <pre><code><span class="cmt"># Usage — log a result</span>
+<span class="str">></span> /results-db log
+  outcome: log_yield
+  sample: full_sample
+  estimator: OLS with county FE
+  coef: 0.23
+  se: 0.05
+  p_value: 0.000
+  section: main_text
+  validation: parallel_trends_passed
+
+<span class="cmt"># Before submission — run integrity check</span>
+<span class="str">></span> /results-db check-integrity
+<span class="cmt"># Flags: mismatched p-values, failed validations in main text, etc.</span>
+
+<span class="cmt"># Export for paper</span>
+<span class="str">></span> /results-db export --format latex</code></pre>
 
     <h2 id="sharing-skills" class="anchor-heading">Sharing skills with your team</h2>
     <p>

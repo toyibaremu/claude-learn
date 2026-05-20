@@ -49,7 +49,7 @@
         <li><a href="#agents">What are agents?</a></li>
         <li><a href="#claude-api">Calling the Claude API directly</a></li>
         <li><a href="#research-agents">Building research agents</a></li>
-        <li><a href="#sub-agents">Sub-agents in Claude Code</a></li>
+        <li><a href="#sub-agents">Sub-agents &amp; multi-agent verification</a></li>
         <li><a href="#cost-management">Cost management at scale</a></li>
         <li><a href="#exercise">Exercise</a></li>
       </ol>
@@ -178,6 +178,46 @@ readr::write_csv(df, <span class="str">"data/interviews_coded.csv"</span>)</code
   - Each agent extracts: main themes, key quotes, sentiment
   - Combine results into a single summary file
   Save final output to output/interview_analysis.json</code></pre>
+
+    <h3>Three-agent verification (research applications)</h3>
+    <p>The most powerful multi-agent pattern for academic research isn't parallelisation — it's independent verification. Two agents read the same source independently, then a third cross-checks both:</p>
+    <pre><code><span class="str">></span> Read the 10 papers in papers/to-read/ using a three-agent approach.
+  For each paper:
+  - Agent A: read the PDF and extract key claims, methods, and findings
+  - Agent B: read the same PDF independently (no access to Agent A's output)
+  - Agent C: cross-compare A and B against the original PDF.
+    For any discrepancy, flag it. For anything unverifiable, write FLAG FOR AUTHOR.
+
+Output per paper:
+  - Consolidated annotation (~150 words)
+  - Discrepancy log (Agent A vs B differences)
+  - List of FLAGS FOR AUTHOR
+
+Save to output/verified_annotations.docx</code></pre>
+    <div class="callout callout-tip">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <strong>Why three agents catch more errors</strong>
+        Two independent reads of the same PDF catch OCR errors, decimal transcription errors,
+        and misattributed quotes that a single agent would miss. Agent C acts as the referee —
+        it resolves genuine discrepancies by going back to the PDF source. See
+        <a href="case-studies.html">Case Studies</a> for a real example using this pattern
+        across 20 papers.
+      </div>
+    </div>
+
+    <h3>Adversarial multi-agent review before shipping</h3>
+    <p>When building tools or products, use parallel agents with different "hats" to stress-test your work before sharing it:</p>
+    <pre><code><span class="str">></span> Review this analysis (output/main_results.tex + analysis/main.do)
+  using five parallel review agents:
+
+  1. Statistician — correct interpretation of coefficients, SE, p-values
+  2. Data engineer — data construction errors, merge issues, missing-value handling
+  3. Replication specialist — can someone replicate this from the code + data?
+  4. Referee — what would a skeptical journal reviewer find to object to?
+  5. Author — does the text accurately describe what the code actually does?
+
+  Each agent: flag issues as Critical / Major / Minor with suggested fix.</code></pre>
 
     <h2 id="cost-management" class="anchor-heading">Cost management at scale</h2>
 

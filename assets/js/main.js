@@ -318,4 +318,31 @@ document.addEventListener('DOMContentLoaded', () => {
   initAnchors();
   initScrollSpy();
   updateProgressUI();
+  injectSidebarLinks();
 });
+
+/* ─── Inject dynamic sidebar links ────────────────────────────── */
+function injectSidebarLinks() {
+  const isInModules = window.location.pathname.includes('/modules/');
+  const base = isInModules ? '' : 'modules/';
+  const currentPath = window.location.pathname;
+
+  const extraLinks = [
+    { href: base + 'case-studies.html', text: '📂 Case Studies' },
+    { href: base + 'resources.html',    text: '🔗 Resources & Credits' },
+  ];
+
+  document.querySelectorAll('.sidebar-section').forEach(section => {
+    const label = section.querySelector('.sidebar-label');
+    if (!label || label.textContent.trim() !== 'Reference') return;
+    extraLinks.forEach(({ href, text }) => {
+      if (section.querySelector(`a[href$="${href.split('/').pop()}"]`)) return;
+      const a = document.createElement('a');
+      a.href = href;
+      a.className = 'sidebar-link';
+      if (currentPath.endsWith(href.split('/').pop())) a.classList.add('active');
+      a.textContent = text;
+      section.appendChild(a);
+    });
+  });
+}

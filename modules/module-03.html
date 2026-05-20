@@ -77,6 +77,7 @@
         <li><a href="#examples">Research examples: Stata, R, Python</a></li>
         <li><a href="#hierarchy">CLAUDE.md hierarchy (global vs. project)</a></li>
         <li><a href="#iteration">Keeping your CLAUDE.md up to date</a></li>
+        <li><a href="#voice-md">Going further: voice.md</a></li>
         <li><a href="#exercise">Exercise</a></li>
       </ol>
     </div>
@@ -383,6 +384,54 @@ notebooks/     - Exploratory Jupyter notebooks ONLY
         Then review and refine what it produces. It's a great starting point.
       </div>
     </div>
+
+    <!-- voice.md section -->
+    <h2 id="voice-md" class="anchor-heading">Going further: voice.md for writing projects</h2>
+
+    <p>
+      For projects involving manuscript writing, consider creating a companion <code>voice.md</code> file
+      alongside your CLAUDE.md. It encodes your writing style so that Claude produces prose that
+      sounds like <em>you</em>, not like a generic AI assistant.
+    </p>
+
+    <pre><code><span class="cmt"># voice.md</span>
+
+<span class="kw">Sentence structure</span>
+- Short sentences preferred. Average 18–22 words.
+- Avoid passive voice in results sections.
+- Use em dashes rather than parentheses for asides.
+
+<span class="kw">Academic register</span>
+- AER/AJAE style: direct, evidence-first, no hedging without purpose.
+- Never "it is worth noting" — just note it.
+- No bullet points in prose sections.
+
+<span class="kw">Vocabulary</span>
+- "farms" not "agricultural operations"
+- "adoption" not "uptake" or "utilization"
+- "we" not "the authors" or "this paper"
+
+<span class="cmt"># In CLAUDE.md, reference it:</span>
+<span class="kw">## Writing rules</span>
+Before any drafting or editing, read voice.md.
+Edit existing text; do not rewrite from scratch.
+Preserve the authors' voice throughout.</code></pre>
+
+    <div class="callout callout-tip">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <strong>How to create your voice.md</strong>
+        Paste three paragraphs of your own writing into a Claude session and ask:
+        <em>"Analyse my writing style. Document sentence length preferences, vocabulary patterns,
+        hedging language I avoid, and academic register — in a format I can save as voice.md."</em>
+        Then add your own overrides.
+      </div>
+    </div>
+
+    <p>
+      See <a href="case-studies.html">Case Studies</a> for a real example of how this pattern
+      is used in a late-stage manuscript revision with co-authors.
+    </p>
 
     <!-- Exercise -->
     <div class="exercise" id="exercise">
