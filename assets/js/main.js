@@ -328,8 +328,7 @@ function injectSidebarLinks() {
   const currentPath = window.location.pathname;
 
   const extraLinks = [
-    { href: base + 'case-studies.html', text: '📂 Case Studies' },
-    { href: base + 'resources.html',    text: '🔗 Resources & Credits' },
+    { href: base + 'resources.html', text: '🔗 Resources & Credits' },
   ];
 
   document.querySelectorAll('.sidebar-section').forEach(section => {
